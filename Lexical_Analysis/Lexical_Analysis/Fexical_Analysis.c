@@ -20,7 +20,8 @@ int getIntNum(FILE* file, char ch);
 
 enum tsymbol { tnull = -1,
 tnot, tnotequ, tmod, tmodAssign, tident, tnumber, tand, tlparen, trparen, tmul, tmulAssign, 
-tplus, tinc, taddAssign, tcomma, tminus, tdec, tsubAssign, tdiv, tdivAssgin, tsemicolon, tless, tlesse, tassign, tequal, tgreat, tgreate, tlbracket, trbracket, teof,
+tplus, tinc, taddAssign, tcomma, tminus, tdec, tsubAssign, tdiv, tdivAssgin, tsemicolon, tless, tlesse, 
+tassign, tequal, tgreat, tgreate, tlbracket, trbracket, teof,
 tconst, telse, tif, tint, treturn, tvoid, twhile, tlbrace, tor, trbrace};
 
 enum tsymbol tnum[NO_KEYWORDS] = {
@@ -83,6 +84,21 @@ struct tokenType scanner(FILE* file) {
         else
         {
             switch (ch) {	// special character
+            case '/':   // state 10
+                ch = fgetc(file);
+                if (ch == '*')
+                    do {
+                        while (ch != '*') ch = fgetc(file);
+                        ch = fgetc(file);
+                    } while (ch != '/');
+                else if (ch == '/')
+                    while (fgetc(file) != '\n');
+                else if (ch == '=') token.number = tdivAssgin;
+                else {
+                    token.number = tdiv;
+                    ungetc(ch, stdin);
+                }                
+                break;
             case '!':	// state 17
                 ch = fgetc(file);
                 if (ch == '=') {
@@ -243,9 +259,6 @@ int main(int argc, char* argv[]) {
 	}
 
 	FILE* file = fopen(argv[1], "r");
-    // char sentence[1000] = "";  // 연결된 문자열을 저장할 배열
-    // char tmpSentence[100] = "";  // 임시로 숫자를 문자열로 변환할 배열
-
 
 	if (file == NULL) {
 		printf("Error: Could not open file %s\n", argv[1]);
@@ -271,25 +284,20 @@ int main(int argc, char* argv[]) {
 			printf("Token itself: %-10s | Token number: %-10d | Token value: ",
 				token.value.id, token.number);
 			printf("%s\n", token.value.id);
-            // strcat_s(sentence, sizeof(sentence), token.value.id);
 		}
 		else if (token.number == tnumber) {
 			// printf("상수 입니다 - ");
 			printf("Token itself: %-10d | Token number: %-10d | Token value: ",
                 token.value.num, token.number);
 			printf("%d\n", token.value.num);            
-            // strcat_s(sentence, sizeof(sentence), sprintf_s(tmpSentence, sizeof(tmpSentence), "%d", token.value.num));
 		}
 		else {
 			// printf("그외 입니다 - ");
 			printf("Token itself: %-10s | Token number: %-10d | Token value: ",
 				token.value.id, token.number);
 			printf("0\n");
-            // strcat_s(sentence, sizeof(sentence), token.value.id);
 		}
 	}
-
-    // printf("Final sentence: %s\n", sentence);
 
 	fclose(file);
 	return 0;
