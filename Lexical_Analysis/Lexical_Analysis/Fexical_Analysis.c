@@ -2,7 +2,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
-#include <conio.h>  // For _kbhit() and _getch()
 
 #define _CRT_SECURE_NO_WARNINGS
 
