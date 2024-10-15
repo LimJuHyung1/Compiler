@@ -1,0 +1,8 @@
+﻿  Fexical_Analysis.c
+E:\VisualStudio_source\Lexical_Analysis\Lexical_Analysis\Fexical_Analysis.c(40,7): warning C4013: 'superLetter'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+E:\VisualStudio_source\Lexical_Analysis\Lexical_Analysis\Fexical_Analysis.c(45,13): warning C4013: 'superLetterOrDigit'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+E:\VisualStudio_source\Lexical_Analysis\Lexical_Analysis\Fexical_Analysis.c(46,24): warning C4013: 'lexicalError'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+E:\VisualStudio_source\Lexical_Analysis\Lexical_Analysis\Fexical_Analysis.c(62,22): warning C4013: 'getIntNum'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+E:\VisualStudio_source\Lexical_Analysis\Lexical_Analysis\Fexical_Analysis.c(161,4): warning C4013: 'lexiclaError'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+E:\VisualStudio_source\Lexical_Analysis\Lexical_Analysis\Fexical_Analysis.c(57,5): error C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+E:\VisualStudio_source\Lexical_Analysis\Lexical_Analysis\Fexical_Analysis.c(169,6): error C2371: 'lexicalError': 재정의. 기본 형식이 다릅니다.
