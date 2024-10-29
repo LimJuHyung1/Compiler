@@ -134,7 +134,7 @@
     <ClInclude Include="scanner.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\x64\Debug\minic.tbl" />
+    <ClInclude Include="..\x64\Debug\minic.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,1 +1,1 @@
-Lexical_Analysis.exe minic.tbl perfect.mc.txt
+Lexical_Analysis.exe perfect.mc.txt

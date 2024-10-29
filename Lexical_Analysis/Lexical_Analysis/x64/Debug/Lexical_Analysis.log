@@ -1,2 +1,6 @@
 ﻿  SyntaxAnalyzer.c
+E:\VisualStudio_source\Lexical_Analysis\Lexical_Analysis\SyntaxAnalyzer.c(7,9): warning C4005: 'GOAL_RULE': 매크로 재정의
+      E:\VisualStudio_source\Lexical_Analysis\Lexical_Analysis\minic.h(2,9):
+      'GOAL_RULE'의 이전 정의를 참조하십시오.
+  
   Lexical_Analysis.vcxproj -> E:\VisualStudio_source\Lexical_Analysis\x64\Debug\Lexical_Analysis.exe

@@ -26,8 +26,8 @@
     <ClInclude Include="scanner.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\x64\Debug\minic.tbl" />
+    <ClInclude Include="..\x64\Debug\minic.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
