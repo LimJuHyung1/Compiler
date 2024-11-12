@@ -42,7 +42,7 @@ int executable[NO_OPCODES] = {
 
 int opcodeCycle[NO_OPCODES] = {
 	/*"notop"*/	5, /*"neg"*/	5, /*"inc"*/	1, /*"dec"*/	1, /*"dup"*/	5, /*"swp"*/	10, /*"add"*/	10, /*"sub"*/	10, /*"mult"*/	50, /*"div"*/	100,
-	/*"mod"*/	100, /*"and"*/	10, /*"or"*/		10, /*"gt"*/		20, /*"lt"*/		20, /*"ge"*/		20, /*"le"*/		20, /*"eq"*/		20, /*"ne"*/		20,
+	/*"mod"*/	100, /*"and"*/	10, /*"or"*/	10, /*"gt"*/	20, /*"lt"*/	20, /*"ge"*/	20, /*"le"*/	20, /*"eq"*/	20, /*"ne"*/	20,
 	/*"lod"*/	5, /*"ldc"*/	5, /*"lda"*/	5, /*"ldi"*/	10, /*"ldp"*/	10, /*"str"*/	5, /*"sti"*/	10, /*"ujp"*/	10, /*"tjp"*/	10, /*"fjp"*/	10,
 	/*"call"*/	30, /*"ret"*/	30, /*"retv"*/	30, /*"chkh"*/	5, /*"chkl"*/	5, /*"nop"*/	0, /*"proc"*/	30, /*"end"*/	0, /*"bgn"*/	0, /*"sym"*/	0,
 	/*"dump"*/	100, /*"none"*/	0
@@ -150,5 +150,119 @@ UcodeiStack::UcodeiStack(int size) {
 	push(0); push(0); push(-1); push(1);
 }
 
+void UcodeiStack::push(int value) {
+	if (sp == STACKSIZE) errmsg("push()", "Stack Overflow...");
+	stackArray[++sp] = value;
+}
+
+int UcodeiStack::pop() {
+	if (sp == 0) errmsg("pop()", "Stack Underflow");
+	return stackArray[sp--];
+}
+
+void UcodeiStack::dump() {
+	int i;
+
+	std::cout << "stack dump : (address : value)\n";
+	for (i = sp - 10; i <= sp; ++i) {
+		std::cout << ' ' << i << " : " << stackArray[i] << "\n";	
+	}
+	std::cout << '\n';
+}
+
+int& UcodeiStack::operator[](int index) {
+	return stackArray[index];
+}
+
+Label::Label() {
+	int index;
+
+	labelCnt = 2;
+	strcpy(labelTable[0].labelName, "read");
+	labelTable[0].address = READPROC;
+	labelTable[0].instrList = NULL;
+
+	strcpy(labelTable[1].labelName, "write");
+	labelTable[1].address = WRITEPROC;
+	labelTable[1].instrList = NULL;
+
+	strcpy(labelTable[2].labelName, "lf");
+	labelTable[2].address = LFPROC;
+	labelTable[2].instrList = NULL;
+
+	for (index = 3; index < MAXLABELS; index++) {
+		labelTable[index].address = UNDEFINED;
+	}
+}
+
+void Label::insertLabel(char label[], int value) {
+	struct fixUpList* ptr;
+	int index;
+
+	for (index = 0; (index <= labelCnt) && strcmp(labelTable[index].labelName, label); index++);
+	labelTable[index].address = value;
+	if (index > labelCnt) {
+		strcpy(labelTable[index].labelName, label);
+		labelCnt = index;
+		labelTable[index].instrList = NULL;
+	}
+	else {
+		ptr = labelTable[index].instrList;
+		labelTable[index].instrList = NULL;
+		while (ptr) {	// backpatching
+			instrBuf[ptr->instrAddress].value1 = value;
+			ptr = ptr->next;
+		}
+	}
+}
+
+void Label::findLabel(char label[], int instr) {
+	struct fixUpList* ptr;
+	int index;
+
+	for (index = 0; (index <= labelCnt) && strcmp(labelTable[index].labelName, label); index++);
+
+	if (index > labelCnt) {		// not found
+		strcpy(labelTable[index].labelName, label);
+		labelCnt = index;
+		ptr = new fixUpdateList;
+
+		if (ptr == NULL) errmsg("findLabel()", "Out of memory -- new");
+		labelTable[index].instrList = ptr;
+		ptr->instrAddress = instr;
+		ptr->next = NULL;
+	}
+	else {						// found
+		ptr = labelTable[index].instrList;
+		if (ptr) addFix(ptr, instr);
+		else instrBuf[instr].value1 = labelTable[index].address;
+	}
+}
+
+void Label::addFix(struct) {
+	struct fixUpList* succ;
+
+	while(prev->next) prev = prev->next;
+	succ = new fixUpList;
+	if (succ == NULL)errmsg("addFix()", "Out of memory");
+	succ->instrAddress = instr;
+	succ->next = NULL;
+	prev->next = succ;
+	//delete succ;
+}
+
+void Label::checkUndefinedLabel() {
+	int index;
+
+	for (index = 0; index <= labelCnt; index++) {
+		if (labelTable[index].address == UNDEFINED) {
+			errmsg("undefined label", labelTable[index].labelName);
+		}
+	}
+}
+
+void Assemble::getLabel() {
+	int i;
+}
 
 
