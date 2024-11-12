@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "E:\\VisualStudio_source\\Lexical_Analysis\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{9291836C-603F-4AE6-B8D7-EFE928E8C82C}|Lexical_Analysis\\Lexical_Analysis.vcxproj|E:\\VisualStudio_source\\Lexical_Analysis\\Lexical_Analysis\\UcodeInterpreter.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{9291836C-603F-4AE6-B8D7-EFE928E8C82C}|Lexical_Analysis\\Lexical_Analysis.vcxproj|solutionrelative:Lexical_Analysis\\UcodeInterpreter.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{9291836C-603F-4AE6-B8D7-EFE928E8C82C}|Lexical_Analysis\\Lexical_Analysis.vcxproj|E:\\VisualStudio_source\\Lexical_Analysis\\Lexical_Analysis\\SyntaxAnalyzer.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{9291836C-603F-4AE6-B8D7-EFE928E8C82C}|Lexical_Analysis\\Lexical_Analysis.vcxproj|solutionrelative:Lexical_Analysis\\SyntaxAnalyzer.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
@@ -22,11 +26,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
+              "Title": "UcodeInterpreter.cpp",
+              "DocumentMoniker": "E:\\VisualStudio_source\\Lexical_Analysis\\Lexical_Analysis\\UcodeInterpreter.cpp",
+              "RelativeDocumentMoniker": "Lexical_Analysis\\UcodeInterpreter.cpp",
+              "ToolTip": "E:\\VisualStudio_source\\Lexical_Analysis\\Lexical_Analysis\\UcodeInterpreter.cpp",
+              "RelativeToolTip": "Lexical_Analysis\\UcodeInterpreter.cpp",
+              "ViewState": "AgIAAH8AAAAAAAAAAAAwwJgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-11-12T01:11:52.383Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "scanner.c",
               "DocumentMoniker": "E:\\VisualStudio_source\\Lexical_Analysis\\Lexical_Analysis\\scanner.c",
               "RelativeDocumentMoniker": "Lexical_Analysis\\scanner.c",
@@ -34,12 +51,11 @@
               "RelativeToolTip": "Lexical_Analysis\\scanner.c",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAABWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
-              "WhenOpened": "2024-10-28T09:53:22.158Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-28T09:53:22.158Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "scanner.h",
               "DocumentMoniker": "E:\\VisualStudio_source\\Lexical_Analysis\\Lexical_Analysis\\scanner.h",
               "RelativeDocumentMoniker": "Lexical_Analysis\\scanner.h",
@@ -47,12 +63,11 @@
               "RelativeToolTip": "Lexical_Analysis\\scanner.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-10-28T09:53:47.897Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-28T09:53:47.897Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "SyntaxAnalyzer.c",
               "DocumentMoniker": "E:\\VisualStudio_source\\Lexical_Analysis\\Lexical_Analysis\\SyntaxAnalyzer.c",
               "RelativeDocumentMoniker": "Lexical_Analysis\\SyntaxAnalyzer.c",

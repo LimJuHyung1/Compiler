@@ -21,6 +21,9 @@
     <ClCompile Include="SyntaxAnalyzer.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="UcodeInterpreter.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="scanner.h">
