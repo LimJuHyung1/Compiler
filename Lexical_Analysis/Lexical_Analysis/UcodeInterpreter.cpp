@@ -266,3 +266,28 @@ void Assemble::getLabel() {
 }
 
 
+void Interpret::perdefinedProc(int procIndex) {
+	static std::ifstream dataFile;
+	static int readFirst = TRUE;
+
+	//char dataFileName[20];
+	int data, temp;
+
+	if (procIndex == READPROC) {		// read
+		std::cin >> data;
+		temp = stack.pop();
+		stack[temp] = data;
+		stack.spSet(stack.top() - 4);
+	}
+	else if (procIndex == WRITEPROC) {		// write
+		temp = stack.pop();
+		std::cout << ' ' << temp;
+		outputFile << ' ' << temp;
+		stack.spSet(stack.top() - 4);
+	}
+	else if (procIndex == LFPROC) {		// lf :line feed
+		outputFile.put('\n');
+		std::cout << "\n";
+	}
+}
+

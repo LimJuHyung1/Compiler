@@ -1,0 +1,118 @@
+           sym 1 100 1     ; list[100]
+           sym 1 1 2       ; element
+           sym 1 1 3       ; total
+           sym 1 1 4       ; i
+           sym  1  1  5       ; top
+           sym  1  1  6       ; temp
+
+           bgn  1  100  1     ; 시작 블록
+
+           ldc  1           ; i = 1
+           str  1  4
+
+           call  read       ; read(element)
+           str  1  2
+
+loop_input lod  1  2         ; while (element != 0)
+           ldc  0
+           eq
+           fjp  end_input
+
+           lda  1  1
+           lod  1  4
+           add
+           lod  1  2
+           sti
+
+           lod  1  4
+           inc
+           str  1  4
+
+           call  read       ; read(element)
+           str  1  2
+           ujp  loop_input
+
+end_input  lod  1  4         ; total = i - 1
+           dec
+           str 1 3
+           str 1 5         ; top = total
+
+loop_outer lod  1  5         ; while (top > 1)
+           ldc  1
+           gt
+           fjp  end_sort
+
+           ldc  1           ; i = 1
+           str  1  4
+
+loop_inner lod  1  4         ; while (i < top)
+           lod  1  5
+           lt
+           fjp  end_inner
+
+           lda  1  1         ; if (list[i] > list[i + 1])
+           lod  1  4
+           add
+           ldi
+           lod  1  4
+           inc
+           lda  1  1
+           add
+           ldi
+           gt
+           fjp  next_i
+
+           lda  1  1         ; temp = list[i]
+           lod  1  4
+           add
+           ldi
+           str  1  6
+
+           lda  1  1         ; list[i] = list[i + 1]
+           lod  1  4
+           add
+           lod  1  4
+           inc
+           lda  1  1
+           add
+           ldi
+           sti
+
+           lda  1  1         ; list[i + 1] = temp
+           lod  1  4
+           inc
+           add
+           lod  1  6
+           sti
+
+next_i     lod  1  4         ; ++i
+           inc
+           str  1  4
+           ujp loop_inner
+
+end_inner  lod  1  5         ; top--
+           dec
+           str  1  5
+           ujp  loop_outer
+
+end_sort   ldc  1           ; i = 1
+           str  1  4
+
+loop_print lod  1  4         ; while (i <= total)
+           lod  1  3
+           le
+           fjp end_print
+
+           lda  1  1         ; write(list[i])
+           lod  1  4
+           add
+           ldi
+           call  write
+
+           lod  1  4         ; ++i
+           inc
+           str  1  4
+           ujp  loop_print
+
+end_print  nop
+           end

@@ -32,11 +32,14 @@ extern enum tsymbol tnum[NO_KEYWORDS];
 // 토큰 구조체 정의
 struct tokenType {
     int number;  // token number
+    //char* tokenValue;
+    
     union {
         char id[ID_LENGTH];
         int num;
-    } value;  // token value
+    } value;  // token value    
 };
+
 
 // 토큰을 스캔하는 함수
 struct tokenType scanner(FILE* file);
