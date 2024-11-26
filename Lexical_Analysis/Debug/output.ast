@@ -1,0 +1,1656 @@
+ current state: 0
+ token.number: 30
+ entry: 14
+
+ current state: 14
+ token.number: 33
+ entry: -13
+
+ current state: 2
+ token.number: 33
+ entry: -11
+
+ current state: 10
+ token.number: 33
+ entry: -9
+
+ current state: 9
+ token.number: 33
+ entry: 13
+
+ current state: 13
+ token.number: 4
+ entry: -14
+
+ current state: 1
+ token.number: 4
+ entry: -12
+
+ current state: 19
+ token.number: 4
+ entry: -10
+
+ current state: 9
+ token.number: 4
+ entry: -8
+
+ current state: 11
+ token.number: 4
+ entry: 24
+
+ current state: 24
+ token.number: 23
+ entry: -33
+
+ current state: 23
+ token.number: 23
+ entry: 33
+
+ current state: 33
+ token.number: 5
+ entry: 72
+
+ current state: 72
+ token.number: 20
+ entry: -32
+
+ current state: 20
+ token.number: 20
+ entry: -29
+
+ current state: 21
+ token.number: 20
+ entry: 29
+
+ current state: 29
+ token.number: 35
+ entry: -28
+
+ current state: 8
+ token.number: 35
+ entry: -5
+
+ current state: 7
+ token.number: 35
+ entry: -2
+
+ current state: 3
+ token.number: 35
+ entry: 12
+
+ current state: 12
+ token.number: 4
+ entry: -15
+
+ current state: 1
+ token.number: 4
+ entry: -12
+
+ current state: 10
+ token.number: 4
+ entry: -9
+
+ current state: 9
+ token.number: 4
+ entry: -8
+
+ current state: 11
+ token.number: 4
+ entry: 24
+
+ current state: 24
+ token.number: 7
+ entry: -16
+
+ current state: 22
+ token.number: 7
+ entry: 32
+
+ current state: 32
+ token.number: 8
+ entry: -19
+
+ current state: 69
+ token.number: 8
+ entry: 109
+
+ current state: 109
+ token.number: 37
+ entry: -17
+
+ current state: 31
+ token.number: 37
+ entry: -7
+
+ current state: 5
+ token.number: 37
+ entry: 18
+
+ current state: 18
+ token.number: 33
+ entry: 13
+
+ current state: 13
+ token.number: 4
+ entry: -14
+
+ current state: 1
+ token.number: 4
+ entry: -12
+
+ current state: 10
+ token.number: 4
+ entry: -9
+
+ current state: 9
+ token.number: 4
+ entry: -8
+
+ current state: 28
+ token.number: 4
+ entry: 66
+
+ current state: 66
+ token.number: 14
+ entry: -33
+
+ current state: 23
+ token.number: 14
+ entry: -31
+
+ current state: 20
+ token.number: 14
+ entry: -29
+
+ current state: 21
+ token.number: 14
+ entry: 30
+
+ current state: 30
+ token.number: 4
+ entry: 66
+
+ current state: 66
+ token.number: 14
+ entry: -33
+
+ current state: 23
+ token.number: 14
+ entry: -31
+
+ current state: 67
+ token.number: 14
+ entry: -30
+
+ current state: 21
+ token.number: 14
+ entry: 30
+
+ current state: 30
+ token.number: 4
+ entry: 66
+
+ current state: 66
+ token.number: 20
+ entry: -33
+
+ current state: 23
+ token.number: 20
+ entry: -31
+
+ current state: 67
+ token.number: 20
+ entry: -30
+
+ current state: 21
+ token.number: 20
+ entry: 29
+
+ current state: 29
+ token.number: 33
+ entry: -28
+
+ current state: 27
+ token.number: 33
+ entry: -26
+
+ current state: 26
+ token.number: 33
+ entry: 13
+
+ current state: 13
+ token.number: 4
+ entry: -14
+
+ current state: 1
+ token.number: 4
+ entry: -12
+
+ current state: 10
+ token.number: 4
+ entry: -9
+
+ current state: 9
+ token.number: 4
+ entry: -8
+
+ current state: 28
+ token.number: 4
+ entry: 66
+
+ current state: 66
+ token.number: 14
+ entry: -33
+
+ current state: 23
+ token.number: 14
+ entry: -31
+
+ current state: 20
+ token.number: 14
+ entry: -29
+
+ current state: 21
+ token.number: 14
+ entry: 30
+
+ current state: 30
+ token.number: 4
+ entry: 66
+
+ current state: 66
+ token.number: 20
+ entry: -33
+
+ current state: 23
+ token.number: 20
+ entry: -31
+
+ current state: 67
+ token.number: 20
+ entry: -30
+
+ current state: 21
+ token.number: 20
+ entry: 29
+
+ current state: 29
+ token.number: 4
+ entry: -28
+
+ current state: 65
+ token.number: 4
+ entry: -27
+
+ current state: 26
+ token.number: 4
+ entry: -24
+
+ current state: 25
+ token.number: 4
+ entry: 63
+
+ current state: 63
+ token.number: 23
+ entry: -95
+
+ current state: 41
+ token.number: 23
+ entry: -85
+
+ current state: 42
+ token.number: 23
+ entry: -80
+
+ current state: 36
+ token.number: 23
+ entry: 75
+
+ current state: 75
+ token.number: 5
+ entry: 62
+
+ current state: 62
+ token.number: 20
+ entry: -96
+
+ current state: 41
+ token.number: 20
+ entry: -85
+
+ current state: 42
+ token.number: 20
+ entry: -80
+
+ current state: 36
+ token.number: 20
+ entry: -76
+
+ current state: 45
+ token.number: 20
+ entry: -73
+
+ current state: 54
+ token.number: 20
+ entry: -68
+
+ current state: 40
+ token.number: 20
+ entry: -65
+
+ current state: 51
+ token.number: 20
+ entry: -63
+
+ current state: 47
+ token.number: 20
+ entry: -61
+
+ current state: 46
+ token.number: 20
+ entry: -54
+
+ current state: 113
+ token.number: 20
+ entry: -55
+
+ current state: 53
+ token.number: 20
+ entry: -53
+
+ current state: 50
+ token.number: 20
+ entry: -47
+
+ current state: 44
+ token.number: 20
+ entry: 91
+
+ current state: 91
+ token.number: 36
+ entry: -46
+
+ current state: 49
+ token.number: 36
+ entry: -42
+
+ current state: 38
+ token.number: 36
+ entry: -39
+
+ current state: 37
+ token.number: 36
+ entry: 55
+
+ current state: 55
+ token.number: 7
+ entry: 101
+
+ current state: 101
+ token.number: 4
+ entry: 63
+
+ current state: 63
+ token.number: 22
+ entry: -95
+
+ current state: 41
+ token.number: 22
+ entry: -85
+
+ current state: 42
+ token.number: 22
+ entry: -80
+
+ current state: 36
+ token.number: 22
+ entry: -76
+
+ current state: 45
+ token.number: 22
+ entry: -73
+
+ current state: 54
+ token.number: 22
+ entry: -68
+
+ current state: 40
+ token.number: 22
+ entry: 84
+
+ current state: 84
+ token.number: 4
+ entry: 63
+
+ current state: 63
+ token.number: 8
+ entry: -95
+
+ current state: 41
+ token.number: 8
+ entry: -85
+
+ current state: 42
+ token.number: 8
+ entry: -80
+
+ current state: 119
+ token.number: 8
+ entry: -76
+
+ current state: 45
+ token.number: 8
+ entry: -73
+
+ current state: 122
+ token.number: 8
+ entry: -72
+
+ current state: 40
+ token.number: 8
+ entry: -65
+
+ current state: 51
+ token.number: 8
+ entry: -63
+
+ current state: 47
+ token.number: 8
+ entry: -61
+
+ current state: 46
+ token.number: 8
+ entry: -54
+
+ current state: 53
+ token.number: 8
+ entry: -53
+
+ current state: 138
+ token.number: 8
+ entry: 146
+
+ current state: 146
+ token.number: 37
+ entry: 18
+
+ current state: 18
+ token.number: 4
+ entry: -25
+
+ current state: 25
+ token.number: 4
+ entry: 63
+
+ current state: 63
+ token.number: 23
+ entry: -95
+
+ current state: 41
+ token.number: 23
+ entry: -85
+
+ current state: 42
+ token.number: 23
+ entry: -80
+
+ current state: 36
+ token.number: 23
+ entry: 75
+
+ current state: 75
+ token.number: 5
+ entry: 62
+
+ current state: 62
+ token.number: 20
+ entry: -96
+
+ current state: 41
+ token.number: 20
+ entry: -85
+
+ current state: 42
+ token.number: 20
+ entry: -80
+
+ current state: 36
+ token.number: 20
+ entry: -76
+
+ current state: 45
+ token.number: 20
+ entry: -73
+
+ current state: 54
+ token.number: 20
+ entry: -68
+
+ current state: 40
+ token.number: 20
+ entry: -65
+
+ current state: 51
+ token.number: 20
+ entry: -63
+
+ current state: 47
+ token.number: 20
+ entry: -61
+
+ current state: 46
+ token.number: 20
+ entry: -54
+
+ current state: 113
+ token.number: 20
+ entry: -55
+
+ current state: 53
+ token.number: 20
+ entry: -53
+
+ current state: 50
+ token.number: 20
+ entry: -47
+
+ current state: 44
+ token.number: 20
+ entry: 91
+
+ current state: 91
+ token.number: 4
+ entry: -46
+
+ current state: 49
+ token.number: 4
+ entry: -42
+
+ current state: 38
+ token.number: 4
+ entry: -39
+
+ current state: 37
+ token.number: 4
+ entry: 63
+
+ current state: 63
+ token.number: 23
+ entry: -95
+
+ current state: 41
+ token.number: 23
+ entry: -85
+
+ current state: 42
+ token.number: 23
+ entry: -80
+
+ current state: 36
+ token.number: 23
+ entry: 75
+
+ current state: 75
+ token.number: 4
+ entry: 63
+
+ current state: 63
+ token.number: 18
+ entry: -95
+
+ current state: 41
+ token.number: 18
+ entry: -85
+
+ current state: 42
+ token.number: 18
+ entry: -80
+
+ current state: 36
+ token.number: 18
+ entry: -76
+
+ current state: 45
+ token.number: 18
+ entry: 92
+
+ current state: 92
+ token.number: 5
+ entry: 62
+
+ current state: 62
+ token.number: 20
+ entry: -96
+
+ current state: 41
+ token.number: 20
+ entry: -85
+
+ current state: 42
+ token.number: 20
+ entry: -80
+
+ current state: 129
+ token.number: 20
+ entry: -78
+
+ current state: 45
+ token.number: 20
+ entry: -73
+
+ current state: 54
+ token.number: 20
+ entry: -68
+
+ current state: 40
+ token.number: 20
+ entry: -65
+
+ current state: 51
+ token.number: 20
+ entry: -63
+
+ current state: 47
+ token.number: 20
+ entry: -61
+
+ current state: 46
+ token.number: 20
+ entry: -54
+
+ current state: 113
+ token.number: 20
+ entry: -55
+
+ current state: 53
+ token.number: 20
+ entry: -53
+
+ current state: 50
+ token.number: 20
+ entry: -47
+
+ current state: 44
+ token.number: 20
+ entry: 91
+
+ current state: 91
+ token.number: 4
+ entry: -46
+
+ current state: 49
+ token.number: 4
+ entry: -42
+
+ current state: 81
+ token.number: 4
+ entry: -40
+
+ current state: 37
+ token.number: 4
+ entry: 63
+
+ current state: 63
+ token.number: 23
+ entry: -95
+
+ current state: 41
+ token.number: 23
+ entry: -85
+
+ current state: 42
+ token.number: 23
+ entry: -80
+
+ current state: 36
+ token.number: 23
+ entry: 75
+
+ current state: 75
+ token.number: 5
+ entry: 62
+
+ current state: 62
+ token.number: 20
+ entry: -96
+
+ current state: 41
+ token.number: 20
+ entry: -85
+
+ current state: 42
+ token.number: 20
+ entry: -80
+
+ current state: 36
+ token.number: 20
+ entry: -76
+
+ current state: 45
+ token.number: 20
+ entry: -73
+
+ current state: 54
+ token.number: 20
+ entry: -68
+
+ current state: 40
+ token.number: 20
+ entry: -65
+
+ current state: 51
+ token.number: 20
+ entry: -63
+
+ current state: 47
+ token.number: 20
+ entry: -61
+
+ current state: 46
+ token.number: 20
+ entry: -54
+
+ current state: 113
+ token.number: 20
+ entry: -55
+
+ current state: 53
+ token.number: 20
+ entry: -53
+
+ current state: 50
+ token.number: 20
+ entry: -47
+
+ current state: 44
+ token.number: 20
+ entry: 91
+
+ current state: 91
+ token.number: 36
+ entry: -46
+
+ current state: 49
+ token.number: 36
+ entry: -42
+
+ current state: 81
+ token.number: 36
+ entry: -40
+
+ current state: 37
+ token.number: 36
+ entry: 55
+
+ current state: 55
+ token.number: 7
+ entry: 101
+
+ current state: 101
+ token.number: 4
+ entry: 63
+
+ current state: 63
+ token.number: 22
+ entry: -95
+
+ current state: 41
+ token.number: 22
+ entry: -85
+
+ current state: 42
+ token.number: 22
+ entry: -80
+
+ current state: 36
+ token.number: 22
+ entry: -76
+
+ current state: 45
+ token.number: 22
+ entry: -73
+
+ current state: 54
+ token.number: 22
+ entry: -68
+
+ current state: 40
+ token.number: 22
+ entry: 84
+
+ current state: 84
+ token.number: 4
+ entry: 63
+
+ current state: 63
+ token.number: 8
+ entry: -95
+
+ current state: 41
+ token.number: 8
+ entry: -85
+
+ current state: 42
+ token.number: 8
+ entry: -80
+
+ current state: 119
+ token.number: 8
+ entry: -76
+
+ current state: 45
+ token.number: 8
+ entry: -73
+
+ current state: 122
+ token.number: 8
+ entry: -72
+
+ current state: 40
+ token.number: 8
+ entry: -65
+
+ current state: 51
+ token.number: 8
+ entry: -63
+
+ current state: 47
+ token.number: 8
+ entry: -61
+
+ current state: 46
+ token.number: 8
+ entry: -54
+
+ current state: 53
+ token.number: 8
+ entry: -53
+
+ current state: 138
+ token.number: 8
+ entry: 146
+
+ current state: 146
+ token.number: 37
+ entry: 18
+
+ current state: 18
+ token.number: 4
+ entry: -25
+
+ current state: 25
+ token.number: 4
+ entry: 63
+
+ current state: 63
+ token.number: 23
+ entry: -95
+
+ current state: 41
+ token.number: 23
+ entry: -85
+
+ current state: 42
+ token.number: 23
+ entry: -80
+
+ current state: 36
+ token.number: 23
+ entry: 75
+
+ current state: 75
+ token.number: 4
+ entry: 63
+
+ current state: 63
+ token.number: 2
+ entry: -95
+
+ current state: 41
+ token.number: 2
+ entry: -85
+
+ current state: 42
+ token.number: 2
+ entry: -80
+
+ current state: 36
+ token.number: 2
+ entry: -76
+
+ current state: 45
+ token.number: 2
+ entry: 94
+
+ current state: 94
+ token.number: 4
+ entry: 63
+
+ current state: 63
+ token.number: 20
+ entry: -95
+
+ current state: 41
+ token.number: 20
+ entry: -85
+
+ current state: 42
+ token.number: 20
+ entry: -80
+
+ current state: 131
+ token.number: 20
+ entry: -79
+
+ current state: 45
+ token.number: 20
+ entry: -73
+
+ current state: 54
+ token.number: 20
+ entry: -68
+
+ current state: 40
+ token.number: 20
+ entry: -65
+
+ current state: 51
+ token.number: 20
+ entry: -63
+
+ current state: 47
+ token.number: 20
+ entry: -61
+
+ current state: 46
+ token.number: 20
+ entry: -54
+
+ current state: 113
+ token.number: 20
+ entry: -55
+
+ current state: 53
+ token.number: 20
+ entry: -53
+
+ current state: 50
+ token.number: 20
+ entry: -47
+
+ current state: 44
+ token.number: 20
+ entry: 91
+
+ current state: 91
+ token.number: 32
+ entry: -46
+
+ current state: 49
+ token.number: 32
+ entry: -42
+
+ current state: 38
+ token.number: 32
+ entry: -39
+
+ current state: 37
+ token.number: 32
+ entry: 57
+
+ current state: 57
+ token.number: 7
+ entry: 103
+
+ current state: 103
+ token.number: 4
+ entry: 63
+
+ current state: 63
+ token.number: 24
+ entry: -95
+
+ current state: 41
+ token.number: 24
+ entry: -85
+
+ current state: 42
+ token.number: 24
+ entry: -80
+
+ current state: 36
+ token.number: 24
+ entry: -76
+
+ current state: 45
+ token.number: 24
+ entry: -73
+
+ current state: 54
+ token.number: 24
+ entry: -68
+
+ current state: 40
+ token.number: 24
+ entry: -65
+
+ current state: 51
+ token.number: 24
+ entry: 97
+
+ current state: 97
+ token.number: 5
+ entry: 62
+
+ current state: 62
+ token.number: 8
+ entry: -96
+
+ current state: 41
+ token.number: 8
+ entry: -85
+
+ current state: 42
+ token.number: 8
+ entry: -80
+
+ current state: 119
+ token.number: 8
+ entry: -76
+
+ current state: 45
+ token.number: 8
+ entry: -73
+
+ current state: 54
+ token.number: 8
+ entry: -68
+
+ current state: 134
+ token.number: 8
+ entry: -66
+
+ current state: 51
+ token.number: 8
+ entry: -63
+
+ current state: 47
+ token.number: 8
+ entry: -61
+
+ current state: 46
+ token.number: 8
+ entry: -54
+
+ current state: 53
+ token.number: 8
+ entry: -53
+
+ current state: 140
+ token.number: 8
+ entry: 147
+
+ current state: 147
+ token.number: 37
+ entry: 18
+
+ current state: 18
+ token.number: 4
+ entry: -25
+
+ current state: 25
+ token.number: 4
+ entry: 63
+
+ current state: 63
+ token.number: 13
+ entry: -95
+
+ current state: 41
+ token.number: 13
+ entry: -85
+
+ current state: 42
+ token.number: 13
+ entry: -80
+
+ current state: 36
+ token.number: 13
+ entry: 78
+
+ current state: 78
+ token.number: 4
+ entry: 63
+
+ current state: 63
+ token.number: 20
+ entry: -95
+
+ current state: 41
+ token.number: 20
+ entry: -85
+
+ current state: 42
+ token.number: 20
+ entry: -80
+
+ current state: 36
+ token.number: 20
+ entry: -76
+
+ current state: 45
+ token.number: 20
+ entry: -73
+
+ current state: 54
+ token.number: 20
+ entry: -68
+
+ current state: 40
+ token.number: 20
+ entry: -65
+
+ current state: 51
+ token.number: 20
+ entry: -63
+
+ current state: 47
+ token.number: 20
+ entry: -61
+
+ current state: 46
+ token.number: 20
+ entry: -54
+
+ current state: 116
+ token.number: 20
+ entry: -56
+
+ current state: 53
+ token.number: 20
+ entry: -53
+
+ current state: 50
+ token.number: 20
+ entry: -47
+
+ current state: 44
+ token.number: 20
+ entry: 91
+
+ current state: 91
+ token.number: 12
+ entry: -46
+
+ current state: 49
+ token.number: 12
+ entry: -42
+
+ current state: 38
+ token.number: 12
+ entry: -39
+
+ current state: 37
+ token.number: 12
+ entry: 60
+
+ current state: 60
+ token.number: 4
+ entry: 63
+
+ current state: 63
+ token.number: 20
+ entry: -95
+
+ current state: 41
+ token.number: 20
+ entry: -85
+
+ current state: 42
+ token.number: 20
+ entry: -80
+
+ current state: 106
+ token.number: 20
+ entry: -83
+
+ current state: 36
+ token.number: 20
+ entry: -76
+
+ current state: 45
+ token.number: 20
+ entry: -73
+
+ current state: 54
+ token.number: 20
+ entry: -68
+
+ current state: 40
+ token.number: 20
+ entry: -65
+
+ current state: 51
+ token.number: 20
+ entry: -63
+
+ current state: 47
+ token.number: 20
+ entry: -61
+
+ current state: 46
+ token.number: 20
+ entry: -54
+
+ current state: 53
+ token.number: 20
+ entry: -53
+
+ current state: 50
+ token.number: 20
+ entry: -47
+
+ current state: 44
+ token.number: 20
+ entry: 91
+
+ current state: 91
+ token.number: 39
+ entry: -46
+
+ current state: 49
+ token.number: 39
+ entry: -42
+
+ current state: 81
+ token.number: 39
+ entry: -40
+
+ current state: 37
+ token.number: 39
+ entry: -37
+
+ current state: 43
+ token.number: 39
+ entry: 90
+
+ current state: 90
+ token.number: 32
+ entry: -23
+
+ current state: 52
+ token.number: 32
+ entry: -41
+
+ current state: 150
+ token.number: 32
+ entry: -49
+
+ current state: 48
+ token.number: 32
+ entry: -43
+
+ current state: 81
+ token.number: 32
+ entry: -40
+
+ current state: 37
+ token.number: 32
+ entry: 57
+
+ current state: 57
+ token.number: 7
+ entry: 103
+
+ current state: 103
+ token.number: 4
+ entry: 63
+
+ current state: 63
+ token.number: 24
+ entry: -95
+
+ current state: 41
+ token.number: 24
+ entry: -85
+
+ current state: 42
+ token.number: 24
+ entry: -80
+
+ current state: 36
+ token.number: 24
+ entry: -76
+
+ current state: 45
+ token.number: 24
+ entry: -73
+
+ current state: 54
+ token.number: 24
+ entry: -68
+
+ current state: 40
+ token.number: 24
+ entry: -65
+
+ current state: 51
+ token.number: 24
+ entry: 97
+
+ current state: 97
+ token.number: 4
+ entry: 63
+
+ current state: 63
+ token.number: 8
+ entry: -95
+
+ current state: 41
+ token.number: 8
+ entry: -85
+
+ current state: 42
+ token.number: 8
+ entry: -80
+
+ current state: 119
+ token.number: 8
+ entry: -76
+
+ current state: 45
+ token.number: 8
+ entry: -73
+
+ current state: 54
+ token.number: 8
+ entry: -68
+
+ current state: 134
+ token.number: 8
+ entry: -66
+
+ current state: 51
+ token.number: 8
+ entry: -63
+
+ current state: 47
+ token.number: 8
+ entry: -61
+
+ current state: 46
+ token.number: 8
+ entry: -54
+
+ current state: 53
+ token.number: 8
+ entry: -53
+
+ current state: 140
+ token.number: 8
+ entry: 147
+
+ current state: 147
+ token.number: 4
+ entry: 63
+
+ current state: 63
+ token.number: 7
+ entry: -95
+
+ current state: 41
+ token.number: 7
+ entry: -85
+
+ current state: 42
+ token.number: 7
+ entry: 89
+
+ current state: 89
+ token.number: 4
+ entry: 63
+
+ current state: 63
+ token.number: 8
+ entry: -95
+
+ current state: 41
+ token.number: 8
+ entry: -85
+
+ current state: 42
+ token.number: 8
+ entry: -80
+
+ current state: 36
+ token.number: 8
+ entry: -76
+
+ current state: 45
+ token.number: 8
+ entry: -73
+
+ current state: 54
+ token.number: 8
+ entry: -68
+
+ current state: 40
+ token.number: 8
+ entry: -65
+
+ current state: 51
+ token.number: 8
+ entry: -63
+
+ current state: 47
+ token.number: 8
+ entry: -61
+
+ current state: 46
+ token.number: 8
+ entry: -54
+
+ current state: 126
+ token.number: 8
+ entry: -93
+
+ current state: 127
+ token.number: 8
+ entry: -92
+
+ current state: 128
+ token.number: 8
+ entry: -90
+
+ current state: 125
+ token.number: 8
+ entry: 144
+
+ current state: 144
+ token.number: 20
+ entry: -87
+
+ current state: 42
+ token.number: 20
+ entry: -80
+
+ current state: 36
+ token.number: 20
+ entry: -76
+
+ current state: 45
+ token.number: 20
+ entry: -73
+
+ current state: 54
+ token.number: 20
+ entry: -68
+
+ current state: 40
+ token.number: 20
+ entry: -65
+
+ current state: 51
+ token.number: 20
+ entry: -63
+
+ current state: 47
+ token.number: 20
+ entry: -61
+
+ current state: 46
+ token.number: 20
+ entry: -54
+
+ current state: 53
+ token.number: 20
+ entry: -53
+
+ current state: 50
+ token.number: 20
+ entry: -47
+
+ current state: 44
+ token.number: 20
+ entry: 91
+
+ current state: 91
+ token.number: 12
+ entry: -46
+
+ current state: 49
+ token.number: 12
+ entry: -42
+
+ current state: 150
+ token.number: 12
+ entry: -49
+
+ current state: 48
+ token.number: 12
+ entry: -43
+
+ current state: 81
+ token.number: 12
+ entry: -40
+
+ current state: 37
+ token.number: 12
+ entry: 60
+
+ current state: 60
+ token.number: 4
+ entry: 63
+
+ current state: 63
+ token.number: 20
+ entry: -95
+
+ current state: 41
+ token.number: 20
+ entry: -85
+
+ current state: 42
+ token.number: 20
+ entry: -80
+
+ current state: 106
+ token.number: 20
+ entry: -83
+
+ current state: 36
+ token.number: 20
+ entry: -76
+
+ current state: 45
+ token.number: 20
+ entry: -73
+
+ current state: 54
+ token.number: 20
+ entry: -68
+
+ current state: 40
+ token.number: 20
+ entry: -65
+
+ current state: 51
+ token.number: 20
+ entry: -63
+
+ current state: 47
+ token.number: 20
+ entry: -61
+
+ current state: 46
+ token.number: 20
+ entry: -54
+
+ current state: 53
+ token.number: 20
+ entry: -53
+
+ current state: 50
+ token.number: 20
+ entry: -47
+
+ current state: 44
+ token.number: 20
+ entry: 91
+
+ current state: 91
+ token.number: 39
+ entry: -46
+
+ current state: 49
+ token.number: 39
+ entry: -42
+
+ current state: 81
+ token.number: 39
+ entry: -40
+
+ current state: 37
+ token.number: 39
+ entry: -37
+
+ current state: 43
+ token.number: 39
+ entry: 90
+
+ current state: 90
+ token.number: 39
+ entry: -23
+
+ current state: 52
+ token.number: 39
+ entry: -41
+
+ current state: 149
+ token.number: 39
+ entry: -51
+
+ current state: 35
+ token.number: 39
+ entry: -44
+
+ current state: 81
+ token.number: 39
+ entry: -40
+
+ current state: 37
+ token.number: 39
+ entry: -37
+
+ current state: 43
+ token.number: 39
+ entry: 90
+
+ current state: 90
+ token.number: 29
+ entry: -23
+
+ current state: 52
+ token.number: 29
+ entry: 0
+

@@ -1,0 +1,3 @@
+Lexical_Analysis.exe perfect.mc
+
+ucodei.exe ThreeOutput.uco ThreeOutput.lst

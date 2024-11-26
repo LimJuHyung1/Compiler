@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 #include "scanner.h"
 #include "minic.h"
 
@@ -22,9 +23,10 @@ typedef struct nodeType {
 }Node;
 
 Node* parser(FILE* file);
-void error_recovery();  // error_recovery 함수 선언 추가
+void error_recovery(FILE* file);  // error_recovery 함수 선언 추가
 
-FILE* astFile;
+// extern FILE* astFile;  // 외부 변수 선언
+FILE* astFile;  // 외부 변수 선언
 
 enum nodeNumber {
 	ACTUAL_PARAM,	ADD,			ADD_ASSIGN,		ARRAY_VAR,		ASSIGN_OP,
@@ -101,22 +103,24 @@ int main(int argc, char* argv[]) {
 	// char fileName[30];
 	// 두 번째 인수로 전달된 소스 파일을 열기
 	FILE* file = fopen(argv[1], "r");
-	
-	// strcpy_s(fileName, sizeof(fileName), argv[1]);
-	// fopen_s(&astFile, strcat_s(strtok(fileName, "."), ".ast"), "w");
+	errno_t err = fopen_s(&astFile, "output.ast", "w");
+	if (!astFile) {
+		perror("Error opening AST file");
+		exit(EXIT_FAILURE);
+	}
 
 	if (!file) {
 		perror("Error opening source file");
 		return EXIT_FAILURE;
 	}
-	// printf("start of parser\n");
-	// parser(file);  // 파일 포인터를 parser 함수에 전달	
-	// printf("end of parser\n");
 
 	Node* root;
 	root = parser(file);  // 파일 포인터를 parser 함수에 전달
 	printTree(root, 3);
 
+	// fopen("perfect.ast", "r");
+
+	fclose(astFile);
 	fclose(file);  // 파일 닫기
 	return 0;
 }
@@ -135,20 +139,28 @@ Node* parser(FILE* file) {
 	while (1) {
 		current_state = pstk[sp];
 		entry = parsingTable[current_state][token.number];
+		fprintf(astFile, " current state: %d\n", current_state);
+		fprintf(astFile, " token.number: %d\n", token.number);
+		fprintf(astFile, " entry: %d\n\n", entry);
 
 		if (entry > 0) {		// shift action
-			if (++sp > PS_SIZE) {
+			sp++;
+			if (sp > PS_SIZE) {
 				printf("critical error: parsing stack overflow");
 				exit(1);
 			}
-			dpush(token.number, entry);
-
+			symbolStack[sp] = token.number;
+			pstk[sp] = entry;			
+			valueStack[sp] = meaningfulToken(token) ? buildNode(token) : NULL;
+			
+			/*
 			if (meaningfulToken(token)) {
 				valueStack[sp] = buildNode(token);  // 의미 있는 토큰인 경우 노드 생성
 			}
 			else {
 				valueStack[sp] = NULL;              // 의미 없는 토큰인 경우 NULL
 			}
+			*/
 
 			token = scanner(file);
 		}
@@ -161,18 +173,21 @@ Node* parser(FILE* file) {
 				}
 				return valueStack[sp - 1];
 			}
-			// semantic(ruleNumber);			
-			sp = sp - rightLength[ruleNumber] * 2;
 
+			/*
 			if (sp < 0) {
 				printf("Error: Stack pointer underflow during reduction\n");
 				exit(1);
 			}
+			*/
 
 			ptr = buildTree(ruleName[ruleNumber], rightLength[ruleNumber]);
+			sp = sp - rightLength[ruleNumber];
 			lhs = leftSymbol[ruleNumber];
 			current_state = parsingTable[pstk[sp]][lhs];
-			dpush(lhs, current_state);
+			sp++;
+			symbolStack[sp] = lhs;
+			pstk[sp] = current_state;
 			valueStack[sp] = ptr;
 		}
 		else {		// error action
@@ -180,7 +195,7 @@ Node* parser(FILE* file) {
 			printf("Current Token : ");
 			printToken(token);
 			dumpStack();			
-			error_recovery();
+			error_recovery(file);
 			token = scanner(file);
 		}
 	}
@@ -195,8 +210,43 @@ void dpush(int a, int b) {
 	pstk[++sp] = b;
 }
 
-void error_recovery() {
-	printf("Error recovery process\n");
+void error_recovery(FILE* file) {
+	struct tokenType tok;
+	int parenthesisCount, braceCount;
+	int i;
+
+	// step 1: skip to the semicolon
+	parenthesisCount = braceCount = 0;
+	while (true) {
+		tok = scanner(file);
+		if (tok.number == teof) exit(1);
+		if (tok.number == tlparen) parenthesisCount++;
+		else if (tok.number == trparen) parenthesisCount--;
+
+		if (tok.number == tlbrace) braceCount++;
+		else if (tok.number == trbrace) braceCount--;
+
+		if ((tok.number == tsemicolon) && (parenthesisCount <= 0) && (braceCount <= 0))
+			break;
+	}
+
+	// step 2: adjust state stack
+	for (i = sp; i >= 0; i--) {
+		// statement_list -> statement_list . statement
+		if (pstk[i] == 36) break;	// second statement part
+
+		// statement_list -> . statement
+		// statement_list -> . statement_list statement
+		if (pstk[i] == 24) break;	// second statement part
+
+		if (pstk[i] == 25) break;	// second statement part
+
+		if (pstk[i] == 17) break;	// second statement part
+
+		if (pstk[i] == 2) break;	// second statement part
+		if (pstk[i] == 0) break;	// second statement part
+	}
+	sp = i;
 }
 
 
@@ -253,7 +303,8 @@ Node* buildTree(int nodeNumber, int rhsLength) {
 		}
 
 		ptr->token.number = nodeNumber;
-		strncpy_s(ptr->token.value.id, ID_LENGTH, "nonterm", _TRUNCATE);
+		ptr->token.value.num = NULL;
+		// strncpy_s(ptr->token.value.id, ID_LENGTH, "nonterm", _TRUNCATE);
 		ptr->noderep = nonterm;
 		ptr->son = first;
 		ptr->brother = NULL;
@@ -292,14 +343,27 @@ void printTree(Node* pt, int indent) {
 }
 
 void printToken(struct tokenType token) {
-	printf("Token: %d (value: %s)\n", token.number, token.value.id);
+	if (token.number == tident)
+		printf("%s", token.value.id);
+	else if (token.number == tnumber)
+		printf("%d", token.value.num);	
 }
 
 
 void dumpStack() {
-	printf("Stack state: ");
-	for (int i = 0; i <= sp; i++) {
-		printf("%d ", pstk[i]);
+	int i, start;
+
+	if (sp > 10) {
+		start = sp - 10;
 	}
+	else start = 0;
+
+	printf("\n *** dump state stack : ");
+	for (i = start; i <= sp; ++i)
+		printf("%d", pstk[i]);
+
+	printf("\n *** dump symbol stack : ");
+	for (i = start; i <= sp; ++i)
+		printf("%d", symbolStack[i]);
 	printf("\n");
 }
