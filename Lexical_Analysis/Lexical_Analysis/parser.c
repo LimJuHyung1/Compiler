@@ -4,6 +4,8 @@
 #include <stdbool.h>
 #include "scanner.h"
 #include "minic.h"
+#include "SymTab.h"
+#include "EmitCode.h"
 
 // #define NO_RULES 97				/* number ofo reuls */
 // #define GOAL_RULE (NO_RULES + 1)	/* accept rule */
@@ -89,8 +91,22 @@ Node* valueStack[PS_SIZE];
 int sp, pstk[PS_SIZE];
 
 FILE* astFile;  // 외부 변수 선언
+FILE* ucodeFile;
+
+void codeGen(FILE* file, Node* ptr);
+void processDeclaration(Node* ptr);
+void processSimpleVariable(Node* ptr, int typeSpecifier, int typeQualifier);
+void processArrayVariable(Node* ptr, int typeSpecifier, int typeQualifier);
+void rv_emit(FILE* file, Node* ptr);
+void processCondition(FILE* file, Node* ptr);
+void processFuncHeader(Node* ptr);
+
+int returnWithValue;
+int initalValue;
+int lvalue;
 
 int main(int argc, char* argv[]) {
+	/*
 	if (argc != 2) {
 		fprintf(stderr, "Usage: %s <source_file>\n", argv[0]);
 		return EXIT_FAILURE;
@@ -116,6 +132,38 @@ int main(int argc, char* argv[]) {
 	fclose(astFile);
 	fclose(file);  // 파일 닫기
 	return 0;
+	*/
+
+	char fileName[30];
+	Node* root;
+
+	FILE* file = fopen(argv[1], "r");
+	errno_t err = fopen_s(&astFile, "output.ast", "w");
+	errno_t err2 = fopen_s(&ucodeFile, "output.ast", "w");
+
+	printf(" *** start of Mini C Compiler\n");
+	if (argc != 2) {
+		icg_error(1);
+		exit(1);
+	}
+	// strcpy(fileName, argv[1]);
+	strcpy_s(fileName, sizeof(fileName), argv[1]);
+	printf("   * source file name: %s\n", fileName);
+
+	/*
+	if ((sourceFile = fopen(fileName, 'r')) == NULL) {
+		icg_error(2);
+		exit(1);
+	}*/
+
+	// astFile = fopen(strcat(strlok(fileName, "."), ".ast"), "w");
+	// ucodeFile = fopen(strcat(strlok(fileName, "."), ".uco"), "w");
+
+	printf(" === start of Parser\n");
+	root = parser(file);
+	printTree(root, 0);
+	codeGen(file, root);
+	printf(" *** end of Mini C Compiler\n");
 }
 
 Node* parser(FILE* file) {	
@@ -360,4 +408,511 @@ void dumpStack() {
 	for (i = start; i <= sp; ++i)
 		printf("%d ", symbolStack[i]);
 	printf("\n");
+}
+
+
+
+
+
+
+
+
+
+void codeGen(FILE* file, Node* ptr) {
+	Node* p;
+	int globalSize;
+
+	initSymbolTable();
+
+	// step 1 : process the declaration part
+	for (p = ptr->son; p; p = p->brother) {
+		if (p->token.number == DCL) processDeclaration(p->son);
+		else if (p->token.number == FUNC_DEF) processFuncHeader(p->son);
+		else icg_error(3);
+	}
+
+	// dumpSymbolTable();
+	globalSize = offset - 1;
+	// printf("size of global variables = %d\n", globalSize);
+
+	genSym(base);
+
+	// step 2: process the function part
+	for (p = ptr->son; p; p = p->brother)
+		if (p->token.number == FUNC_DEF) processFunction(p);
+	// if(!mainExist) warningmsg("main does not exist");
+
+	// step 3: generate codes for starting routine
+	//		bgn		globalSize
+	//		ldp
+	//		call	main
+	//		end
+	emit1(file, bgn, globalSize);
+	emit0(file, ldp);
+	emitJump(file, call, "main");
+	emit0(file, endop);
+}
+
+void processDeclaration(Node* ptr) {
+	int typeSpecifier, typeQualifier;
+	Node* p, * q;
+
+	if (ptr->token.number != DCL_SPEC) icg_error(4);
+
+	// printf("processDeclaration\n");
+	// step 1: process DCL_SPEC
+	typeSpecifier = INT_TYPE;			// default type
+	typeQualifier = VAR_TYPE;
+	p = ptr->son;
+	while (p) {
+		if (p->token.number == INT_NODE) typeSpecifier = INT_TYPE;
+		else if (p->token.number == CONST_NODE)
+			typeQualifier = CONST_TYPE;
+		else {		// AUTO, EXTERN, REGISTER, FLOAT, DOUBLE, SIGNED, UNSIGNED
+			printf("not yet implemented\n");
+			return;
+		}
+		p = p->brother;
+	}
+
+	// step 2: process DCL_ITEM
+	p = ptr->brother;
+	if (p->token.number != DCL_ITEM) icg_error(5);
+
+	while (p) {
+		q = p->son;		// SYMPLE_VAR or ARRAY_VAR
+		switch (q->token.number) {
+		case SIMPLE_VAR:		// simple variable
+			processSimpleVariable(q, typeSpecifier, typeQualifier);
+			break;
+		case ARRAY_VAR:			// array variable
+			processArrayVariable(q, typeSpecifier, typeQualifier);
+			break;
+		default: print("error in SIMPLE_VAR or ARRAY_VAR\n");
+			break;
+		}	// end switch
+		p = p->brother;
+	}	// end while
+}
+
+
+void processSimpleVariable(Node* ptr, int typeSpecifier, int typeQualifier) {
+	Node* p = ptr->son;		// variable name(=> identifier)
+	Node* q = ptr->brother;	// inital value part
+	int stIndex, size, initial;
+	int sign = 1;
+
+	if (ptr->token.number != SIMPLE_VAR)printf("error in SIMPLE_VAR\n");
+
+	if (typeQualifier == CONST_TYPE) {		// constant type
+		if (q == NULL) {
+			printf("%s must have a constant value\n", ptr->son->token.value.id);
+			return;
+		}
+
+		if (q->token.number == UNARY_MINUS) {
+			sign = -1;
+			q = q->son;
+		}
+
+		initalValue = sign * q->token.value.num;
+
+		stIndex = insert(p->token.value.id, typeSpecifier, typeQualifier, 0/*base*/, 0/*offset*/, 0/*width*/, initalValue);
+	}
+	else {			// variable type
+		size = typeSize(typeSpecifier);
+		// stIndex = insert(p->token.value.id, typeSpecifier, typeQualifier, base, offset, width, 0);
+		stIndex = insert(p->token.value.id, typeSpecifier, typeQualifier, base, offset, size, 0);
+
+		offset += size;
+	}
+}
+
+void processArrayVariable(Node* ptr, int typeSpecifier, int typeQualifier) {
+	Node* p = ptr->son;		// variable name(=> identifier)
+	int stIndex, size;
+
+	if (ptr->token.number != ARRAY_VAR) {
+		printf("error in ARRAY_VAR\n");
+		return;
+	}
+	if (p->brother == NULL)	// no size
+		printf("array size must be specified\n");
+	else size = p->brother->token.value.num;
+
+	size *= typeSize(typeSpecifier);
+
+	stIndex = insert(p->token.value.id, typeSpecifier, typeQualifier, base, offset, size, 0);
+	offset += size;
+}
+
+void processOperator(FILE* file, Node* ptr) {
+	int stIndex;
+
+	switch (ptr->token.number) {
+		// assignment operator
+	case ASSIGN_OP:
+	{
+		Node* lhs = ptr->son, * rhs = ptr->son->brother;
+
+		// step 1: generate instructions for left-hand side if INDEX node.
+		if (lhs->noderep == nonterm) {		// array variable			
+			lvalue = 1;
+			processOperator(file, lhs);
+			lvalue = 0;
+		}
+
+		// step 2: generate instructions for right-hand side
+		if (rhs->noderep == nonterm) processOperator(file, rhs);
+		else rv_emit(file, rhs);
+
+		// step 3: generate a store instruction
+		if (lhs->noderep == terminal) {		// simple variable
+			stIndex = lookup(lhs->token.value.id);
+			if (stIndex == -1) {
+				printf("undefined variable : %s\n", lhs->token.value.id);
+				return;
+			}
+			emit2(file, str, symbolTable[stIndex].base, symbolTable[stIndex].offset);
+		}
+		else
+			emit0(file, sti);
+		break;
+	}
+
+	// complex assignment operators
+	case ADD_ASSIGN: case SUB_ASSIGN:
+	case MUL_ASSIGN: case DIV_ASSIGN:
+	case MOD_ASSIGN:
+	{
+		Node* lhs = ptr->son, * rhs = ptr->son->brother;
+		int nodeNumber = ptr->token.number;
+
+		ptr->token.number = ASSIGN_OP;
+
+		//step 1: code generation for left hand side
+		if (lhs->noderep == nonterm) {
+			lvalue = 1;
+			processOperator(file, lhs);
+			lvalue = 0;
+		}
+
+		ptr->token.number = nodeNumber;
+		// step 2: code generation for repeating part
+		if (lhs->noderep == nonterm) processOperator(file, lhs);
+		else rv_emit(file, lhs);
+
+		// step 3: code generation for right hand side
+		if (rhs->noderep == nonterm)
+			processOperator(file, rhs);
+		else
+			emit0(file, rhs->token.value.num);			// 이거 뭐임
+
+		// step 4: emit the corresponding operation code
+		switch (ptr->token.number) {
+		case ADD_ASSIGN: emit0(file, add); break;
+		case SUB_ASSIGN: emit0(file, sub); break;
+		case MUL_ASSIGN: emit0(file, mult); break;
+		case DIV_ASSIGN: emit0(file, divop); break;
+		case MOD_ASSIGN: emit0(file, modop); break;
+		}
+
+		// steop 5: code generation for store code
+		if (lhs->noderep == terminal) {
+			stIndex = lookup(lhs->token.value.id);
+			if (stIndex == -1) {
+				printf("undefined variable : %s\n", lhs->son->token.value.id);
+				return;
+			}
+			emit2(file, str, symbolTable[stIndex].base, symbolTable[stIndex].offset);
+		}
+		else
+			emit0(file, sti);
+		break;
+	}
+	// binary(arithmetic/relational/logical) operators
+	case ADD: case SUB: case MUL: case DIV: case MOD:
+	case EQ: case NE: case GT: case LT: case GE: case LE:
+	case LOGICAL_AND: case LOGICAL_OR:
+	{
+		Node* lhs = ptr->son, * rhs = ptr->son->brother;
+
+		// step 1: visit left operand
+		if (lhs->noderep == nonterm) processOperator(file, lhs);
+		else rv_emit(file, lhs);
+
+		// step 2: visit right operand
+		if (rhs->noderep == nonterm) processOperator(file, rhs);
+		else rv_emit(file, rhs);
+
+		// step 3: visit root
+		switch (ptr->token.number) {
+			case ADD:	emit0(file, add);	break;		// arithmetic operators
+			case SUB:	emit0(file, sub);	break;
+			case MUL:	emit0(file, mult);	break;
+			case DIV:	emit0(file, divop);	break;
+			case MOD:	emit0(file, modop);	break;
+			case EQ:	emit0(file, eq);	break;		// relational operators
+			case NE:	emit0(file, ne);	break;
+			case GT:	emit0(file, gt);	break;
+			case LT:	emit0(file, lt);	break;
+			case GE:	emit0(file, ge);	break;
+			case LE:	emit0(file, le);	break;
+			case LOGICAL_AND:	emit0(file, andop);	break;	// logical operators
+			case LOGICAL_OR:	emit0(file, orop);	break;			
+		}
+		break;
+	}
+
+	case UNARY_MINUS: case LOGICAL_NOT: // unary operators
+	{
+		Node* p = ptr->son;
+
+		if (p->noderep == nonterm) processOperator(file, p);
+		else rv_emit(file, p);
+
+		switch (ptr->token.number)
+		{
+			case UNARY_MINUS: emit0(file, neg);		break;
+			case LOGICAL_NOT: emit0(file, notop);	break;
+		}
+		break;
+	}		
+
+
+	case PRE_INC: case PRE_DEC: case POST_INC: case POST_DEC:
+	{
+		Node* p = ptr->son; Node* q;
+		int amount = 1;
+		if (p->noderep == nonterm) processOperator(file, p);	// compute operand
+		else rv_emit(file, p);
+
+		q = p;
+		while (q->noderep != terminal) q = q->son;
+
+		if (!q || (q->token.number != tident)) {
+			printf("increment/decrement operators can not be applied in expression\n");
+			return;
+		}
+
+		stIndex = lookup(q->token.value.id);
+		if (stIndex == -1) return;
+
+		switch (ptr->token.number) {
+		case PRE_INC: emit0(file, incop);
+			// if (isOperation(ptr)) emit0(file, dup);
+			break;
+		case PRE_DEC: emit0(file, decop);
+			// if (isOperation(ptr)) emit0(file, dup);
+			break;
+		case POST_INC: emit0(file, incop);
+			// if (isOperation(ptr)) emit0(file, dup);
+			break;
+		case POST_DEC: emit0(file, decop);
+			// if (isOperation(ptr)) emit0(file, dup);
+			break;
+		}
+
+		if (p->noderep == terminal) {
+			stIndex = lookup(p->token.value.id);
+			if (stIndex == -1) return;
+			emit2(file, str, symbolTable[stIndex].base, symbolTable[stIndex].offset);
+		}
+		else if (p->token.number == INDEX) {	// compute index
+			lvalue = 1;
+			processOperator(file, p);
+			lvalue = 0;
+			emit0(file, swp);
+			emit0(file, sti);
+		}
+		else printf("error in increment/decrement operators\n");
+		break;
+	}
+	case INDEX:
+	{
+		Node* indexExp = ptr->son->brother;
+
+		if (indexExp->noderep == nonterm) processOperator(file, indexExp);
+		else rv_emit(file, indexExp);
+		stIndex = lookup(ptr->son->token.value.id);
+		if (stIndex == -1) {
+			printf("undefined variable : %s\n", ptr->son->token.value.id);
+			return;
+		}
+
+		emit2(file, lda, symbolTable[stIndex].base, symbolTable[stIndex].offset);
+		emit0(file, add);
+
+		if (!lvalue) emit0(file, ldi); break;	// rvalue
+	}
+	case CALL:
+	{
+		Node* p = ptr->son;		// function name
+		char* functionName;
+		int noArguments;
+		if (checkPredefined(p))		// predefined(Library) functions
+			break;
+
+		// handle for user function
+		functionName = p->token.value.id;
+		stIndex = lookup(functionName);
+		if (stIndex == -1)	break;	// undefined function !!!
+		noArguments = symbolTable[stIndex].width;
+
+		emit0(file, ldp);
+
+		p = p->brother;		// ACTUAL_PARAM
+		while (p) {			// processing actual arguments
+			if (p->noderep == nonterm) processOperator(file, p);
+			else rv_emit(file, p);
+
+			noArguments--;
+			p = p->brother;
+		}
+
+		if (noArguments > 0)
+			printf("%s: too few actual arguments", functionName);
+		if (noArguments < 0)
+			printf("%s: too many actual arguments", functionName);
+		emitJump(file, call, ptr->son->token.value.id);
+		break;
+	}
+	}	// end switch
+}
+
+void rv_emit(FILE* file, Node* ptr) {
+	int stIndex;
+
+	if (ptr->token.number == tnumber)
+		emit(file, ldc, ptr->token.value.num);
+	else {
+		stIndex = lookup(ptr->token.value.id);
+		if (stIndex == -1) return;
+		if (symbolTable[stIndex].typeQualifier == CONST_TYPE)	// constant
+			emit1(file, ldc, symbolTable[stIndex].initialValue);
+		else if (symbolTable[stIndex].width > 1)		// array var
+			emit2(file, lda, symbolTable[stIndex].base, symbolTable[stIndex].offset);
+		else			// simple var
+		{
+			emit2(file, lod, symbolTable[stIndex].base, symbolTable[stIndex].offset);
+		}
+	}
+}
+
+
+void processStatement(FILE* file, Node* ptr) {
+	Node* p;
+
+	switch (ptr->token.number) {
+	case COMPOUND_ST:
+	{
+		p = ptr->son->brother;		// STAT_LIST
+		p = p->son;
+
+		while (p) {
+			processStatement(file, p);
+			p = p->brother;
+		}
+		break;
+	}
+	case EXP_ST:
+		if (ptr->son != NULL) processOperator(file, ptr->son);
+		break;
+	case RETURN_ST:
+		if (ptr->son != NULL) {
+			returnWithValue = 1;
+			p = ptr->son;
+			if (p->noderep == nonterm)
+				processOperator(file, p);	// return value
+			else rv_emit(file, p);
+			emit0(file, retv);
+		}
+		else
+			emit0(file, ret);
+		break;
+	case IF_ST:
+	{
+		char label[LABEL_SIZE];
+
+		genLabel(label);
+		processCondition(file, ptr->son);		// condition part
+		emitJump(file, fjp, label);
+		processStatement(file, ptr->son->brother);		// true part
+		emitLabel(file, label);
+
+		break;
+	}
+	case IF_ELSE_ST:
+	{
+		char label1[LABEL_SIZE], label2[LABEL_SIZE];
+
+		genLabel(label1);
+		genLabel(label2);
+		processCondition(file, ptr->son);		// condition part
+		emitJump(file, fjp, label1);
+		processStatement(file, ptr->son->brother);		// true part
+		emitJump(file, ujp, label2);
+		emitLabel(file, label1);
+		processStatement(file, ptr->son->brother);		// false part
+		emitLabel(file, label2);
+
+		break;
+	}
+	case WHILE_ST:
+	{
+		char label1[LABEL_SIZE], label2[LABEL_SIZE];
+
+		genLabel(label1);
+		genLabel(label2);
+		emitLabel(file, label1);
+		processCondition(file, ptr->son);		// condition part
+		emitJump(file, fjp, label2);
+		processStatement(file, ptr->son->brother);		// loop body
+		emitJump(file, ujp, label1);
+		emitLabel(file, label2);
+
+		break;
+	}
+	default:
+		printf("not yet implemented\n");
+		break;
+	}	// end switch
+}
+
+void processCondition(FILE* file, Node* ptr) {
+	if (ptr->noderep == nonterm) processOperator(file, ptr);
+	else rv_emit(file, ptr);
+}
+
+void processFuncHeader(Node* ptr) {
+	int noArguments, returnType;
+	int stIndex;
+	Node* p;
+
+	// printf("processFuncHeader\n");
+	if (ptr->token.number != FUNC_HEAD)
+		printf("error in processFuncHeader\n");
+
+	// stpe 1: process the function return type
+	p = ptr->son->son;
+	while (p) {
+		if (p->token.number == INT_NODE) returnType = INT_TYPE;
+		else if (p->token.number == VOID_NODE) returnType = VOID_TYPE;
+		else printf("invalid function return type\n");
+		p = p->brother;
+	}
+
+	// step 2: count the number of formal parameters
+	p = ptr->son->brother->brother;	// FORMAL_PARA
+	p = p->son;	// PARAM_DCL
+
+	noArguments = 0;
+	while (p) {
+		noArguments++;
+		p = p->brother;
+	}
+
+	// step 3: insert the function name
+	stIndex = insert(ptr->son->brother->token.value.id, returnType, FUNC_TYPE, 1/*base*/, 0/*offset*/, noArguments/*width*/, 0/*initialValue*/);
+	// if(!strcmp("main", functionName)) mainExist = 1;
 }

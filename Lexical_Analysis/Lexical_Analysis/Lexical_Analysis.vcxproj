@@ -127,11 +127,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="EmitCode.c" />
     <ClCompile Include="scanner.c" />
     <ClCompile Include="parser.c" />
+    <ClCompile Include="SymTab.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="EmitCode.h" />
     <ClInclude Include="scanner.h" />
+    <ClInclude Include="SymTab.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\x64\Debug\minic.h" />

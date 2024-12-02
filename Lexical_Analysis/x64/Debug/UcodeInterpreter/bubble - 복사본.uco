@@ -1,0 +1,130 @@
+main       proc  5  100  2
+           sym   2  1  1        ; int list[100];
+           sym   2  2  1        ; int element;
+           sym   2  3  1        ; int total;
+           sym   2  4  1        ; int i;
+           sym   2  5  1        ; int top;
+           sym   2  6  1        ; int temp;
+
+           ldc   1              ; i = 1;
+           str   2  4
+
+$$readLoop nop
+           call  read           ; read(element);
+           str   2  2
+
+           lod   2  2           ; if (element == 0) break;
+           ldc   0
+           eq
+           fjp   $$exitRead
+
+           lod   2  4           ; list[i] = element;
+           lod   2  2
+           sti
+
+           lod   2  4           ; ++i;
+           ldc   1
+           add
+           str   2  4
+
+           ujp   $$readLoop     ; loop back
+
+$$exitRead nop
+           lod   2  4           ; total = i - 1;
+           ldc   1
+           sub
+           str   2  3
+           str   2  5           ; top = total;
+
+$$sortOuter nop
+           lod   2  5           ; while (top > 1)
+           ldc   1
+           gt
+           fjp   $$exitSort
+
+           ldc   1              ; i = 1;
+           str   2  4
+
+$$sortInner nop
+           lod   2  4           ; while (i < top)
+           lod   2  5
+           lt
+           fjp   $$exitInner
+
+           lod   2  4           ; if (list[i] > list[i + 1])
+           lda   2
+           lod   2  4
+           add
+           ldi
+           lda   2
+           lod   2  4
+           ldc   1
+           add
+           ldi
+           gt
+           fjp   $$skipSwap
+
+           lda   2              ; temp = list[i];
+           lod   2  4
+           add
+           ldi
+           str   2  6
+
+           lda   2              ; list[i] = list[i + 1];
+           lod   2  4
+           add
+           lda   2
+           lod   2  4
+           ldc   1
+           add
+           ldi
+           sti
+
+           lda   2              ; list[i + 1] = temp;
+           lod   2  4
+           ldc   1
+           add
+           lod   2  6
+           sti
+
+$$skipSwap nop
+           lod   2  4           ; ++i;
+           ldc   1
+           add
+           str   2  4
+           ujp   $$sortInner    ; loop back
+
+$$exitInner nop
+           lod   2  5           ; top--;
+           ldc   1
+           sub
+           str   2  5
+           ujp   $$sortOuter    ; loop back
+
+$$exitSort nop
+
+           ldc   1              ; i = 1;
+           str   2  4
+
+$$printLoop nop
+           lod   2  4           ; while (i <= total)
+           lod   2  3
+           le
+           fjp   $$exitPrint
+
+           lda   2              ; write(list[i]);
+           lod   2  4
+           add
+           ldi
+           call  write
+
+           lod   2  4           ; ++i;
+           ldc   1
+           add
+           str   2  4
+           ujp   $$printLoop    ; loop back
+
+$$exitPrint nop
+           ret                  ; return
+
+           endop                ; end of program
