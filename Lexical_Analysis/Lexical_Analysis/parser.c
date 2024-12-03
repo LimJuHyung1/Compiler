@@ -488,7 +488,7 @@ void processDeclaration(Node* ptr) {
 		case ARRAY_VAR:			// array variable
 			processArrayVariable(q, typeSpecifier, typeQualifier);
 			break;
-		default: print("error in SIMPLE_VAR or ARRAY_VAR\n");
+		default: printf("error in SIMPLE_VAR or ARRAY_VAR\n");
 			break;
 		}	// end switch
 		p = p->brother;
@@ -502,7 +502,7 @@ void processSimpleVariable(Node* ptr, int typeSpecifier, int typeQualifier) {
 	int stIndex, size, initial;
 	int sign = 1;
 
-	if (ptr->token.number != SIMPLE_VAR)printf("error in SIMPLE_VAR\n");
+	if (ptr->token.number != SIMPLE_VAR) printf("error in SIMPLE_VAR\n");
 
 	if (typeQualifier == CONST_TYPE) {		// constant type
 		if (q == NULL) {
@@ -522,7 +522,7 @@ void processSimpleVariable(Node* ptr, int typeSpecifier, int typeQualifier) {
 	else {			// variable type
 		size = typeSize(typeSpecifier);
 		// stIndex = insert(p->token.value.id, typeSpecifier, typeQualifier, base, offset, width, 0);
-		stIndex = insert(p->token.value.id, typeSpecifier, typeQualifier, base, offset, size, 0);
+		stIndex = insert(p->token.value.id, typeSpecifier, typeQualifier, base, offset, width, 0);
 
 		offset += size;
 	}
@@ -553,7 +553,7 @@ void processOperator(FILE* file, Node* ptr) {
 		// assignment operator
 	case ASSIGN_OP:
 	{
-		Node* lhs = ptr->son, * rhs = ptr->son->brother;
+		Node* lhs = ptr->son, *rhs = ptr->son->brother;
 
 		// step 1: generate instructions for left-hand side if INDEX node.
 		if (lhs->noderep == nonterm) {		// array variable			
@@ -606,7 +606,7 @@ void processOperator(FILE* file, Node* ptr) {
 		if (rhs->noderep == nonterm)
 			processOperator(file, rhs);
 		else
-			emit0(file, rhs->token.value.num);			// ÀÌ°Å ¹¹ÀÓ
+			emit0(file, rhs->token.value.num);
 
 		// step 4: emit the corresponding operation code
 		switch (ptr->token.number) {
@@ -750,8 +750,10 @@ void processOperator(FILE* file, Node* ptr) {
 		Node* p = ptr->son;		// function name
 		char* functionName;
 		int noArguments;
+		/*
 		if (checkPredefined(p))		// predefined(Library) functions
 			break;
+			*/
 
 		// handle for user function
 		functionName = p->token.value.id;
@@ -784,7 +786,7 @@ void rv_emit(FILE* file, Node* ptr) {
 	int stIndex;
 
 	if (ptr->token.number == tnumber)
-		emit(file, ldc, ptr->token.value.num);
+		emit1(file, ldc, ptr->token.value.num);
 	else {
 		stIndex = lookup(ptr->token.value.id);
 		if (stIndex == -1) return;
@@ -815,10 +817,12 @@ void processStatement(FILE* file, Node* ptr) {
 		}
 		break;
 	}
-	case EXP_ST:
+	case EXP_ST: {
 		if (ptr->son != NULL) processOperator(file, ptr->son);
 		break;
-	case RETURN_ST:
+	}
+		
+	case RETURN_ST: {
 		if (ptr->son != NULL) {
 			returnWithValue = 1;
 			p = ptr->son;
@@ -830,9 +834,10 @@ void processStatement(FILE* file, Node* ptr) {
 		else
 			emit0(file, ret);
 		break;
+	}		
 	case IF_ST:
 	{
-		char label[LABEL_SIZE];
+		char label[50];
 
 		genLabel(label);
 		processCondition(file, ptr->son);		// condition part
@@ -844,7 +849,8 @@ void processStatement(FILE* file, Node* ptr) {
 	}
 	case IF_ELSE_ST:
 	{
-		char label1[LABEL_SIZE], label2[LABEL_SIZE];
+		// int const LABEL_SIZE = 50;
+		char label1[50], label2[50];
 
 		genLabel(label1);
 		genLabel(label2);
@@ -860,10 +866,10 @@ void processStatement(FILE* file, Node* ptr) {
 	}
 	case WHILE_ST:
 	{
-		char label1[LABEL_SIZE], label2[LABEL_SIZE];
+		char label1[50], label2[50];
 
-		genLabel(label1);
-		genLabel(label2);
+		// genLabel(label1);
+		// genLabel(label2);
 		emitLabel(file, label1);
 		processCondition(file, ptr->son);		// condition part
 		emitJump(file, fjp, label2);
@@ -915,4 +921,12 @@ void processFuncHeader(Node* ptr) {
 	// step 3: insert the function name
 	stIndex = insert(ptr->son->brother->token.value.id, returnType, FUNC_TYPE, 1/*base*/, 0/*offset*/, noArguments/*width*/, 0/*initialValue*/);
 	// if(!strcmp("main", functionName)) mainExist = 1;
+}
+
+int typeSize(int typeSpecifier) {
+	if (typeSpecifier == INT_TYPE) return 1;
+	else {
+		printf("not yet implemented\n");
+		exit(0);
+	}
 }

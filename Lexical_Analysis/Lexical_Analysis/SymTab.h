@@ -6,7 +6,7 @@
 #include <string.h>
 
 // Constants
-#define ID_LENGTH 31
+#define SYM_LENGTH 31
 #define SYMTAB_SIZE 200
 #define HASH_BUCKET_SIZE 97
 #define LEVEL_STACK_SIZE 10
@@ -28,7 +28,7 @@ typedef enum {
 
 // Structure Definition for Symbol Entry
 struct SymbolEntry {
-    char symbolName[ID_LENGTH];
+    char symbolName[SYM_LENGTH];
     int typeSpecifier;
     int typeQualifier;
     int base;
@@ -48,6 +48,7 @@ extern int levelStack[SYMTAB_SIZE];
 extern int levelTop;
 extern int base;
 extern int offset;
+extern int width;
 
 // Function Declarations
 void initSymbolTable();

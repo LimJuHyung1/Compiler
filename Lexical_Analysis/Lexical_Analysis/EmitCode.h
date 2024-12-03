@@ -27,5 +27,7 @@ void emitLabel(FILE* ucodeFile, char* label);
 void emitJump(FILE* ucodeFile, opcode op, char* label);
 void emitSym(FILE* ucodeFile, int base, int offset, int size);
 void emitFunc(FILE* ucodeFile, char* label, int base, int offset, int size);
+void genLabel(char* label);
+void icg_error(int err);
 
 #endif // EMITCODE_H

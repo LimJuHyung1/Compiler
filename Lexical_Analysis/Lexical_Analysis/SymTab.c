@@ -78,7 +78,7 @@ int insert(char* symbol, int specifier, int qualifier, int base, int offset,
     }
 
     symbolTableTop++;
-    strcpy(symbolTable[symbolTableTop].symbolName, symbol);
+    strcpy_s(symbolTable[symbolTableTop].symbolName, sizeof(symbolTable[symbolTableTop].symbolName), symbol);
     symbolTable[symbolTableTop].typeSpecifier = specifier;
     symbolTable[symbolTableTop].typeQualifier = qualifier;
     symbolTable[symbolTableTop].base = base;

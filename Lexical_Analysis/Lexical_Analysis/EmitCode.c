@@ -58,3 +58,11 @@ void emitFunc(FILE* ucodeFile, char* label, int base, int offset, int size) {
     fprintf(ucodeFile, " ");
     fprintf(ucodeFile, "%5d %5d %5d\n", base, offset, size);
 }
+
+void genLabel(char* label) {
+    sprintf(label, "$$%-8d", 1);
+}
+
+void icg_error(int err) {
+    printf("error %d\n", err);
+}
