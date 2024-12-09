@@ -60,7 +60,7 @@ void emitFunc(FILE* ucodeFile, char* label, int base, int offset, int size) {
 }
 
 void genLabel(char* label) {
-    sprintf(label, "$$%-8d", 1);
+    sprintf_s(label, 50, "$$%-8d", 1);
 }
 
 void icg_error(int err) {

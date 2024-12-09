@@ -1,13 +1,2 @@
-﻿  SymTab.c
-  parser.c
-C:\Users\Administrator\Desktop\tmp\Lexical_Analysis\Lexical_Analysis\parser.c(146,3): warning C4013: 'icg_error'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
-C:\Users\Administrator\Desktop\tmp\Lexical_Analysis\Lexical_Analysis\parser.c(347,24): warning C4047: '=': 'int'의 간접 참조 수준이 'void *'과(와) 다릅니다.
-C:\Users\Administrator\Desktop\tmp\Lexical_Analysis\Lexical_Analysis\parser.c(442,36): warning C4013: 'processFunction'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
-C:\Users\Administrator\Desktop\tmp\Lexical_Analysis\Lexical_Analysis\parser.c(523,10): warning C4013: 'typeSize'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
-C:\Users\Administrator\Desktop\tmp\Lexical_Analysis\Lexical_Analysis\parser.c(502,21): warning C4101: 'initial' :참조되지 않은 지역 변수입니다.
-  scanner.c
-  코드를 생성하고 있습니다...
-parser.obj : error LNK2019: icg_errorcodeGen 함수에서 참조되는 확인할 수 없는 외부 기호
-parser.obj : error LNK2019: processFunctioncodeGen 함수에서 참조되는 확인할 수 없는 외부 기호
-parser.obj : error LNK2019: typeSizeprocessArrayVariable 함수에서 참조되는 확인할 수 없는 외부 기호
-C:\Users\Administrator\Desktop\tmp\Lexical_Analysis\x64\Debug\Lexical_Analysis.exe : fatal error LNK1120: 3개의 확인할 수 없는 외부 참조입니다.
+﻿parser.obj : error LNK2019: emitprocessFunction 함수에서 참조되는 확인할 수 없는 외부 기호
+E:\VisualStudio_source\Lexical_Analysis\x64\Debug\Lexical_Analysis.exe : fatal error LNK1120: 1개의 확인할 수 없는 외부 참조입니다.

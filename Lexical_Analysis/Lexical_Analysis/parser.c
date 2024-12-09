@@ -100,6 +100,7 @@ void processArrayVariable(Node* ptr, int typeSpecifier, int typeQualifier);
 void rv_emit(FILE* file, Node* ptr);
 void processCondition(FILE* file, Node* ptr);
 void processFuncHeader(Node* ptr);
+void processFunction(FILE* file, Node* ptr);
 
 int returnWithValue;
 int initalValue;
@@ -439,7 +440,7 @@ void codeGen(FILE* file, Node* ptr) {
 
 	// step 2: process the function part
 	for (p = ptr->son; p; p = p->brother)
-		if (p->token.number == FUNC_DEF) processFunction(p);
+		if (p->token.number == FUNC_DEF) processFunction(file, p);
 	// if(!mainExist) warningmsg("main does not exist");
 
 	// step 3: generate codes for starting routine
@@ -929,4 +930,57 @@ int typeSize(int typeSpecifier) {
 		printf("not yet implemented\n");
 		exit(0);
 	}
+}
+
+void processFunction(FILE* file, Node* ptr) {
+	Node* p, * q, * r;
+	base++;
+
+	if (ptr->token.number != FUNC_DEF) printf(" error in processFunction\n");
+
+	// step 1: process formal parameters
+	p = ptr->son->son->brother->brother; // FORMAL_PARA
+	p = p->son;			// PARAM_DCL
+
+	while (p) {
+		processDeclaration(p->son);
+		p = p->brother;
+	}
+
+	// step 2: process the declaration part in function body
+	q = ptr->son->brother;	// COMPOUND_ST
+	q = q->son->son;	// DCL
+	while (q) {
+		processDeclaration(q->son);
+		q = q->brother;
+	}
+	dumpSymbolTable();
+
+	//step 3: emit the function start code(proc p1 p2 p3)
+	printf("%-10s proc %5d %5d %5d\n", ptr->son->son->brother->token.value.id, offset, 0, 0);
+	fprintf(ucodeFile, "%-10s proc  %5d %5d %5d\n", ptr->son->son->brother->token.value.id, offset, 0, 0);
+	genSym(base);
+
+	// step 4: process the statement part in function body
+	r = ptr->son->brother->son->brother; // COMPOUND_ST-STAT_LIST
+	r = ptr->son;	// STATEMENT
+
+	while (r) {
+		processStatement(file, r);
+		r = r->brother;
+	}
+
+	// step 5: check if return type and return value
+	// step 6: generate the ending codes
+	if (returnWithValue == 0) emit0(file, ret);
+
+	emit(file, endop);
+
+	offset = 1;
+	returnWithValue = 0;
+}
+
+void emitprocessFunction(FILE* file, Node* ptr) {
+	// 함수의 실제 구현 내용 작성
+	fprintf(file, "Processing function: %s\n", ptr->token.value.id);
 }

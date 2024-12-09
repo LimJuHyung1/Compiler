@@ -3,32 +3,32 @@
   "WorkspaceRootPath": "E:\\VisualStudio_source\\Lexical_Analysis\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{9291836C-603F-4AE6-B8D7-EFE928E8C82C}|Lexical_Analysis\\Lexical_Analysis.vcxproj|E:\\VisualStudio_source\\Lexical_Analysis\\Lexical_Analysis\\SymTab.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{9291836C-603F-4AE6-B8D7-EFE928E8C82C}|Lexical_Analysis\\Lexical_Analysis.vcxproj|solutionrelative:Lexical_Analysis\\SymTab.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{9291836C-603F-4AE6-B8D7-EFE928E8C82C}|Lexical_Analysis\\Lexical_Analysis.vcxproj|E:\\VisualStudio_source\\Lexical_Analysis\\Lexical_Analysis\\parser.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{9291836C-603F-4AE6-B8D7-EFE928E8C82C}|Lexical_Analysis\\Lexical_Analysis.vcxproj|solutionrelative:Lexical_Analysis\\parser.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9291836C-603F-4AE6-B8D7-EFE928E8C82C}|Lexical_Analysis\\Lexical_Analysis.vcxproj|E:\\VisualStudio_source\\Lexical_Analysis\\Lexical_Analysis\\SymTab.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{9291836C-603F-4AE6-B8D7-EFE928E8C82C}|Lexical_Analysis\\Lexical_Analysis.vcxproj|solutionrelative:Lexical_Analysis\\SymTab.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9291836C-603F-4AE6-B8D7-EFE928E8C82C}|Lexical_Analysis\\Lexical_Analysis.vcxproj|E:\\VisualStudio_source\\Lexical_Analysis\\Lexical_Analysis\\EmitCode.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{9291836C-603F-4AE6-B8D7-EFE928E8C82C}|Lexical_Analysis\\Lexical_Analysis.vcxproj|solutionrelative:Lexical_Analysis\\EmitCode.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9291836C-603F-4AE6-B8D7-EFE928E8C82C}|Lexical_Analysis\\Lexical_Analysis.vcxproj|E:\\VisualStudio_source\\Lexical_Analysis\\Lexical_Analysis\\scanner.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{9291836C-603F-4AE6-B8D7-EFE928E8C82C}|Lexical_Analysis\\Lexical_Analysis.vcxproj|solutionrelative:Lexical_Analysis\\scanner.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{9291836C-603F-4AE6-B8D7-EFE928E8C82C}|Lexical_Analysis\\Lexical_Analysis.vcxproj|E:\\VisualStudio_source\\Lexical_Analysis\\Lexical_Analysis\\scanner.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{9291836C-603F-4AE6-B8D7-EFE928E8C82C}|Lexical_Analysis\\Lexical_Analysis.vcxproj|solutionrelative:Lexical_Analysis\\scanner.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{9291836C-603F-4AE6-B8D7-EFE928E8C82C}|Lexical_Analysis\\Lexical_Analysis.vcxproj|E:\\VisualStudio_source\\Lexical_Analysis\\Lexical_Analysis\\EmitCode.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{9291836C-603F-4AE6-B8D7-EFE928E8C82C}|Lexical_Analysis\\Lexical_Analysis.vcxproj|solutionrelative:Lexical_Analysis\\EmitCode.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9291836C-603F-4AE6-B8D7-EFE928E8C82C}|Lexical_Analysis\\Lexical_Analysis.vcxproj|E:\\VisualStudio_source\\Lexical_Analysis\\Lexical_Analysis\\scanner.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{9291836C-603F-4AE6-B8D7-EFE928E8C82C}|Lexical_Analysis\\Lexical_Analysis.vcxproj|solutionrelative:Lexical_Analysis\\scanner.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{9291836C-603F-4AE6-B8D7-EFE928E8C82C}|Lexical_Analysis\\Lexical_Analysis.vcxproj|E:\\VisualStudio_source\\Lexical_Analysis\\Lexical_Analysis\\EmitCode.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{9291836C-603F-4AE6-B8D7-EFE928E8C82C}|Lexical_Analysis\\Lexical_Analysis.vcxproj|solutionrelative:Lexical_Analysis\\EmitCode.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9291836C-603F-4AE6-B8D7-EFE928E8C82C}|Lexical_Analysis\\Lexical_Analysis.vcxproj|E:\\VisualStudio_source\\Lexical_Analysis\\Lexical_Analysis\\SymTab.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{9291836C-603F-4AE6-B8D7-EFE928E8C82C}|Lexical_Analysis\\Lexical_Analysis.vcxproj|solutionrelative:Lexical_Analysis\\SymTab.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9291836C-603F-4AE6-B8D7-EFE928E8C82C}|Lexical_Analysis\\Lexical_Analysis.vcxproj|E:\\VisualStudio_source\\Lexical_Analysis\\Lexical_Analysis\\SymTab.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{9291836C-603F-4AE6-B8D7-EFE928E8C82C}|Lexical_Analysis\\Lexical_Analysis.vcxproj|solutionrelative:Lexical_Analysis\\SymTab.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,11 +38,63 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
+              "Title": "SymTab.c",
+              "DocumentMoniker": "E:\\VisualStudio_source\\Lexical_Analysis\\Lexical_Analysis\\SymTab.c",
+              "RelativeDocumentMoniker": "Lexical_Analysis\\SymTab.c",
+              "ToolTip": "E:\\VisualStudio_source\\Lexical_Analysis\\Lexical_Analysis\\SymTab.c",
+              "RelativeToolTip": "Lexical_Analysis\\SymTab.c",
+              "ViewState": "AgIAAG8AAAAAAAAAAAAAACYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
+              "WhenOpened": "2024-12-02T10:25:51.938Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "EmitCode.h",
+              "DocumentMoniker": "E:\\VisualStudio_source\\Lexical_Analysis\\Lexical_Analysis\\EmitCode.h",
+              "RelativeDocumentMoniker": "Lexical_Analysis\\EmitCode.h",
+              "ToolTip": "E:\\VisualStudio_source\\Lexical_Analysis\\Lexical_Analysis\\EmitCode.h",
+              "RelativeToolTip": "Lexical_Analysis\\EmitCode.h",
+              "ViewState": "AgIAABMAAAAAAAAAAAAWwB0AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-12-02T10:27:49.211Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "EmitCode.c",
+              "DocumentMoniker": "E:\\VisualStudio_source\\Lexical_Analysis\\Lexical_Analysis\\EmitCode.c",
+              "RelativeDocumentMoniker": "Lexical_Analysis\\EmitCode.c",
+              "ToolTip": "E:\\VisualStudio_source\\Lexical_Analysis\\Lexical_Analysis\\EmitCode.c",
+              "RelativeToolTip": "Lexical_Analysis\\EmitCode.c",
+              "ViewState": "AgIAABsAAAAAAAAAAAAWwDIAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
+              "WhenOpened": "2024-12-02T10:25:57.648Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "parser.c",
+              "DocumentMoniker": "E:\\VisualStudio_source\\Lexical_Analysis\\Lexical_Analysis\\parser.c",
+              "RelativeDocumentMoniker": "Lexical_Analysis\\parser.c",
+              "ToolTip": "E:\\VisualStudio_source\\Lexical_Analysis\\Lexical_Analysis\\parser.c",
+              "RelativeToolTip": "Lexical_Analysis\\parser.c",
+              "ViewState": "AgIAAOsCAAAAAAAAAAAWwLEDAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
+              "WhenOpened": "2024-10-28T09:39:38.734Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "SymTab.h",
               "DocumentMoniker": "E:\\VisualStudio_source\\Lexical_Analysis\\Lexical_Analysis\\SymTab.h",
               "RelativeDocumentMoniker": "Lexical_Analysis\\SymTab.h",
@@ -50,64 +102,24 @@
               "RelativeToolTip": "Lexical_Analysis\\SymTab.h",
               "ViewState": "AgIAABIAAAAAAAAAAAAAAD4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-12-02T10:29:46.317Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-02T10:29:46.317Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "SymTab.c",
-              "DocumentMoniker": "E:\\VisualStudio_source\\Lexical_Analysis\\Lexical_Analysis\\SymTab.c",
-              "RelativeDocumentMoniker": "Lexical_Analysis\\SymTab.c",
-              "ToolTip": "E:\\VisualStudio_source\\Lexical_Analysis\\Lexical_Analysis\\SymTab.c",
-              "RelativeToolTip": "Lexical_Analysis\\SymTab.c",
-              "ViewState": "AgIAAHsAAAAAAAAAAAAAACYAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
-              "WhenOpened": "2024-12-02T10:25:51.938Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "EmitCode.h",
-              "DocumentMoniker": "E:\\VisualStudio_source\\Lexical_Analysis\\Lexical_Analysis\\EmitCode.h",
-              "RelativeDocumentMoniker": "Lexical_Analysis\\EmitCode.h",
-              "ToolTip": "E:\\VisualStudio_source\\Lexical_Analysis\\Lexical_Analysis\\EmitCode.h",
-              "RelativeToolTip": "Lexical_Analysis\\EmitCode.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-12-02T10:27:49.211Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "EmitCode.c",
-              "DocumentMoniker": "E:\\VisualStudio_source\\Lexical_Analysis\\Lexical_Analysis\\EmitCode.c",
-              "RelativeDocumentMoniker": "Lexical_Analysis\\EmitCode.c",
-              "ToolTip": "E:\\VisualStudio_source\\Lexical_Analysis\\Lexical_Analysis\\EmitCode.c",
-              "RelativeToolTip": "Lexical_Analysis\\EmitCode.c",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAASAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
-              "WhenOpened": "2024-12-02T10:25:57.648Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
               "Title": "scanner.c",
               "DocumentMoniker": "E:\\VisualStudio_source\\Lexical_Analysis\\Lexical_Analysis\\scanner.c",
               "RelativeDocumentMoniker": "Lexical_Analysis\\scanner.c",
               "ToolTip": "E:\\VisualStudio_source\\Lexical_Analysis\\Lexical_Analysis\\scanner.c",
               "RelativeToolTip": "Lexical_Analysis\\scanner.c",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAACcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
               "WhenOpened": "2024-10-28T09:53:22.158Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 2,
               "Title": "scanner.h",
               "DocumentMoniker": "E:\\VisualStudio_source\\Lexical_Analysis\\Lexical_Analysis\\scanner.h",
               "RelativeDocumentMoniker": "Lexical_Analysis\\scanner.h",
@@ -116,19 +128,6 @@
               "ViewState": "AgIAAAYAAAAAAAAAAAAAACYAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-10-28T09:53:47.897Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "parser.c",
-              "DocumentMoniker": "E:\\VisualStudio_source\\Lexical_Analysis\\Lexical_Analysis\\parser.c",
-              "RelativeDocumentMoniker": "Lexical_Analysis\\parser.c",
-              "ToolTip": "E:\\VisualStudio_source\\Lexical_Analysis\\Lexical_Analysis\\parser.c",
-              "RelativeToolTip": "Lexical_Analysis\\parser.c",
-              "ViewState": "AgIAAIEBAAAAAAAAAAAuwEQDAAAKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
-              "WhenOpened": "2024-10-28T09:39:38.734Z",
               "EditorCaption": ""
             }
           ]
