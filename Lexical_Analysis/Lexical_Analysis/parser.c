@@ -107,40 +107,66 @@ int initalValue;
 int lvalue;
 
 int main(int argc, char* argv[]) {
-	/*
-	if (argc != 2) {
+	char fileName[30];
+	char astFileName[260];     // AST 파일 이름 저장
+	char ucodeFileName[260];   // UCode 파일 이름 저장
+	Node* root;
+
+	FILE* file = fopen(argv[1], "r");
+
+	// argv[1] 체크
+	if (argc < 2 || argv[1] == NULL) {
 		fprintf(stderr, "Usage: %s <source_file>\n", argv[0]);
 		return EXIT_FAILURE;
 	}
 
-	// 두 번째 인수로 전달된 소스 파일을 열기
-	FILE* file = fopen(argv[1], "r");
-	errno_t err = fopen_s(&astFile, "output.ast", "w");
-	if (!astFile) {
-		perror("Error opening AST file");
-		exit(EXIT_FAILURE);
-	}
-
-	if (!file) {
-		perror("Error opening source file");
+	// argv[1] 복사
+	errno_t err = strcpy_s(fileName, sizeof(fileName), argv[1]);
+	if (err != 0) {
+		fprintf(stderr, "Error copying file name.\n");
 		return EXIT_FAILURE;
 	}
 
-	Node* root;
-	root = parser(file);  // 파일 포인터를 parser 함수에 전달
-	printTree(root, 3);
+	// AST 파일 이름 생성
+	char* baseName = strtok(fileName, ".");
+	if (baseName == NULL) {
+		fprintf(stderr, "Invalid file name format.\n");
+		return EXIT_FAILURE;
+	}
 
-	fclose(astFile);
-	fclose(file);  // 파일 닫기
-	return 0;
-	*/
+	// .ast 확장자 추가
+	err = strcpy_s(astFileName, sizeof(astFileName), baseName);
+	if (err != 0) {
+		fprintf(stderr, "Error creating AST file name.\n");
+		return EXIT_FAILURE;
+	}
+	strcat_s(astFileName, sizeof(astFileName), ".ast");
 
-	char fileName[30];
-	Node* root;
+	// .uco 확장자 추가
+	err = strcpy_s(ucodeFileName, sizeof(ucodeFileName), baseName);
+	if (err != 0) {
+		fprintf(stderr, "Error creating UCode file name.\n");
+		return EXIT_FAILURE;
+	}
+	strcat_s(ucodeFileName, sizeof(ucodeFileName), ".uco");
 
-	FILE* file = fopen(argv[1], "r");
-	errno_t err = fopen_s(&astFile, "output.ast", "w");
-	errno_t err2 = fopen_s(&ucodeFile, "output.ast", "w");
+	// AST 파일 열기
+	err = fopen_s(&astFile, astFileName, "w");
+	if (err != 0 || astFile == NULL) {
+		fprintf(stderr, "Error opening AST file: %s\n", astFileName);
+		return EXIT_FAILURE;
+	}
+
+	// UCode 파일 열기
+	err = fopen_s(&ucodeFile, ucodeFileName, "w");
+	if (err != 0 || ucodeFile == NULL) {
+		fprintf(stderr, "Error opening UCode file: %s\n", ucodeFileName);
+		fclose(astFile);
+		return EXIT_FAILURE;
+	}
+
+	// errno_t err = fopen_s(&astFile, "output.ast", "w");
+	// errno_t err2 = fopen_s(&ucodeFile, "output.uco", "w");
 
 	printf(" *** start of Mini C Compiler\n");
 	if (argc != 2) {
@@ -157,8 +183,6 @@ int main(int argc, char* argv[]) {
 		exit(1);
 	}*/
 
-	// astFile = fopen(strcat(strlok(fileName, "."), ".ast"), "w");
-	// ucodeFile = fopen(strcat(strlok(fileName, "."), ".uco"), "w");
 
 	printf(" === start of Parser\n");
 	root = parser(file);
@@ -845,9 +869,9 @@ void processStatement(FILE* file, Node* ptr) {
 		emitJump(file, fjp, label);
 		processStatement(file, ptr->son->brother);		// true part
 		emitLabel(file, label);
-
-		break;
 	}
+	break;
+	
 	case IF_ELSE_ST:
 	{
 		// int const LABEL_SIZE = 50;
@@ -860,26 +884,26 @@ void processStatement(FILE* file, Node* ptr) {
 		processStatement(file, ptr->son->brother);		// true part
 		emitJump(file, ujp, label2);
 		emitLabel(file, label1);
-		processStatement(file, ptr->son->brother);		// false part
+		processStatement(file, ptr->son->brother->brother);		// false part
 		emitLabel(file, label2);
-
-		break;
 	}
+	break;
+	
 	case WHILE_ST:
 	{
 		char label1[50], label2[50];
 
-		// genLabel(label1);
-		// genLabel(label2);
+		genLabel(label1);
+		genLabel(label2);
 		emitLabel(file, label1);
 		processCondition(file, ptr->son);		// condition part
 		emitJump(file, fjp, label2);
 		processStatement(file, ptr->son->brother);		// loop body
 		emitJump(file, ujp, label1);
 		emitLabel(file, label2);
-
-		break;
 	}
+	break;
+	
 	default:
 		printf("not yet implemented\n");
 		break;
@@ -943,7 +967,7 @@ void processFunction(FILE* file, Node* ptr) {
 	p = p->son;			// PARAM_DCL
 
 	while (p) {
-		processDeclaration(p->son);
+		processFuncHeader(p->son);
 		p = p->brother;
 	}
 
@@ -957,8 +981,8 @@ void processFunction(FILE* file, Node* ptr) {
 	dumpSymbolTable();
 
 	//step 3: emit the function start code(proc p1 p2 p3)
-	printf("%-10s proc %5d %5d %5d\n", ptr->son->son->brother->token.value.id, offset, 0, 0);
-	fprintf(ucodeFile, "%-10s proc  %5d %5d %5d\n", ptr->son->son->brother->token.value.id, offset, 0, 0);
+	printf("%-10s proc %5d %5d %5d\n", ptr->son->son->brother->token.value.id, offset - 1, base, 2);
+	fprintf(ucodeFile, "%-10s proc  %5d %5d %5d\n", ptr->son->son->brother->token.value.id, offset - 1, base, 2);
 	genSym(base);
 
 	// step 4: process the statement part in function body
@@ -974,7 +998,7 @@ void processFunction(FILE* file, Node* ptr) {
 	// step 6: generate the ending codes
 	if (returnWithValue == 0) emit0(file, ret);
 
-	emit(file, endop);
+	emit0(file, endop);
 
 	offset = 1;
 	returnWithValue = 0;
