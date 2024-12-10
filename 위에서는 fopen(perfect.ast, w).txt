@@ -1,2 +1,0 @@
-위에서는 fopen("perfect.ast", "w")
-아래에서는 fopen("perfect.ast", "r")
